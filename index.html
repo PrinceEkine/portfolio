@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prince Dagogo Ekine | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Prince Dagogo Ekine</h1>
+    <p>Full-Stack Developer | Java, Python & Web Applications</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn">View Projects</a>
+      <a href="#contact" class="btn">Hire Me</a>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am Prince Dagogo Ekine, a dedicated Full-Stack Developer with expertise in Java, Python, and JavaScript. Skilled in backend editing, API integration, and deploying applications on platforms such as Netlify and GitHub Pages. My portfolio demonstrates projects in stock tracking, property management, backend automation, and AI-driven insights. I thrive in collaborative environments, value clear communication, and aim to contribute to innovative teams while continuously advancing my technical skills.</p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div>💻 Programming: Java, Python, JavaScript, HTML, CSS</div>
+      <div>⚙️ Backend: API integration, database management</div>
+      <div>🌐 Tools: Git/GitHub, Netlify, SQL</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>Stockbit-Pro</h3>
+      <p>An advanced stock tracking and analysis web application built with JavaScript and backend APIs. Designed to help users monitor stock performance and trends.</p>
+      <div class="tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">API</span>
+        <span class="tag">Web App</span>
+      </div>
+      <a href="https://github.com/PrinceEkine/stockbit-pro" target="_blank">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <h3>PropGuard-Elite</h3>
+      <p>A property management and security solution that integrates database management and backend logic to streamline property oversight.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Database</span>
+        <span class="tag">Backend</span>
+      </div>
+      <a href="https://github.com/PrinceEkine/propguard-elite" target="_blank">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <h3>Bitbox</h3>
+      <p>A Python-based backend automation project focused on scripting, data handling, and workflow optimization.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Backend</span>
+      </div>
+      <a href="https://github.com/PrinceEkine/bitbox" target="_blank">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <h3>BitGrowth-AI</h3>
+      <p>An AI-driven stock insights platform deployed on Netlify, providing predictive analytics and real-time insights for investors.</p>
+      <div class="tags">
+        <span class="tag">AI</span>
+        <span class="tag">Netlify</span>
+        <span class="tag">JavaScript</span>
+      </div>
+      <a href="https://bitgrowth-ai.netlify.app" target="_blank">Live Demo</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>✉️ Email: princedagogoekine@gmail.com</p>
+    <p>🌐 GitHub: <a href="https://github.com/PrinceEkine" target="_blank">github.com/PrinceEkine</a></p>
+    <p>🔗 LinkedIn: <a href="https://www.linkedin.com/in/prince-dagogo-ekine-93b2993a3" target="_blank">linkedin.com/in/prince-dagogo-ekine-93b2993a3</a></p>
+  </section>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn">↑ Top</button>
+
+  <footer>
+    <p>© 2026 Prince Dagogo Ekine</p>
+  </footer>
+
+  <script>
+    // Show scroll-to-top button
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+    // Scroll to top
+    scrollTopBtn.onclick = function() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+  </script>
+</body>
+</html>
