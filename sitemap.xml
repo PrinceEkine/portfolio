@@ -4,29 +4,25 @@
   <!-- Homepage -->
   <url>
     <loc>https://princeekine.github.io/portfolio/</loc>
-    <lastmod>2026-02-07</lastmod>
     <priority>1.0</priority>
   </url>
 
   <!-- About Me -->
   <url>
     <loc>https://princeekine.github.io/portfolio/about.html</loc>
-    <lastmod>2026-02-07</lastmod>
     <priority>0.8</priority>
   </url>
 
   <!-- Projects -->
   <url>
     <loc>https://princeekine.github.io/portfolio/projects.html</loc>
-    <lastmod>2026-02-07</lastmod>
     <priority>0.8</priority>
   </url>
 
   <!-- Skills -->
   <url>
     <loc>https://princeekine.github.io/portfolio/skills.html</loc>
-    <lastmod>2026-02-07</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 
 </urlset>
