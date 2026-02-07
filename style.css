@@ -132,6 +132,9 @@ html {
   display: inline-block;
   position: relative;
   overflow: hidden;
+  cursor: pointer;          /* Ensures pointer cursor */
+  pointer-events: auto;     /* Guarantees clickability */
+  z-index: 1;               /* Keeps the link above pseudo-element */
 }
 
 .btn::after {
@@ -144,6 +147,7 @@ html {
   background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%);
   transform: rotate(45deg);
   animation: shine 3s infinite;
+  z-index: -1;              /* Pushes shine effect behind the button */
 }
 
 @keyframes shine {
@@ -155,6 +159,7 @@ html {
   background: #e65100;
   box-shadow: 0 0 15px #ff9800;
 }
+
 
 /* Sections */
 section {
@@ -332,3 +337,4 @@ footer {
   from { text-shadow: 0 0 10px #00a8e8; }
   to { text-shadow: 0 0 20px #ff9800; }
 }
+
