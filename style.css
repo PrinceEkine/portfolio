@@ -150,14 +150,14 @@ html {
   z-index: -1;              /* Pushes shine effect behind the button */
 }
 
-@keyframes shine {
-  0% { transform: translateX(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) rotate(45deg); }
-}
-
 .btn:hover {
   background: #e65100;
   box-shadow: 0 0 15px #ff9800;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
 }
 
 
@@ -337,4 +337,5 @@ footer {
   from { text-shadow: 0 0 10px #00a8e8; }
   to { text-shadow: 0 0 20px #ff9800; }
 }
+
 
