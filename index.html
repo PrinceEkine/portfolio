@@ -1,176 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prince Dagogo Ekine | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Dagogo Ekine | Portfolio</title>
 
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Portfolio of Prince Dagogo Ekine, Full-Stack Developer specializing in Java, Python, and Web Applications. Explore projects, skills, and services.">
-  <meta name="keywords" content="Prince Ekine, Full-Stack Developer, Java, Python, JavaScript, Portfolio, Projects, Skills, Backend, AI Automation">
-  <meta name="author" content="Prince Dagogo Ekine">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Open Graph for social sharing -->
-  <meta property="og:title" content="Prince Dagogo Ekine | Portfolio">
-  <meta property="og:description" content="Full-Stack Developer portfolio showcasing projects in Java, Python, JavaScript, backend automation, and AI-driven insights.">
-  <meta property="og:url" content="https://princeekine.github.io/portfolio/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://princeekine.github.io/portfolio/images/profile.jpg">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Prince Dagogo Ekine | Portfolio">
-  <meta name="twitter:description" content="Explore projects and skills of Full-Stack Developer Prince Dagogo Ekine.">
-  <meta name="twitter:image" content="https://princeekine.github.io/portfolio/images/profile.jpg">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/particles.css">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/a prince watermark.png" type="image/x-icon">
 
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Prince Dagogo Ekine",
-    "url": "https://princeekine.github.io/portfolio/",
-    "image": "https://princeekine.github.io/portfolio/images/profile.jpg",
-    "jobTitle": "Full-Stack Developer",
-    "knowsAbout": ["Java", "Python", "JavaScript", "Web Applications", "Backend Engineering", "AI Automation"],
-    "sameAs": [
-      "https://github.com/PrinceEkine",
-      "https://www.linkedin.com/in/prince-dagogo-ekine-93b2993a3",
-      "mailto:princedagogoekine@gmail.com"
-    ]
-  }
-  </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Prince Dagogo Ekine",
+      "url": "https://princeekine.github.io/portfolio/",
+      "image": "https://princeekine.github.io/portfolio/images/profile.jpg",
+      "jobTitle": "Full-Stack Developer",
+      "knowsAbout": ["Java", "Python", "JavaScript", "Web Applications", "Backend Engineering", "AI Automation"],
+      "sameAs": [
+        "https://github.com/PrinceEkine",
+        "https://www.linkedin.com/in/prince-dagogo-ekine-93b2993a3",
+        "mailto:princedagogoekine@gmail.com"
+      ]
+    }
+    </script>
 </head>
+
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <h1>Prince Dagogo Ekine</h1>
-    <p>Full-Stack Developer | Java, Python & Web Applications</p>
-    <div class="hero-buttons">
-      <a href="#projects" class="btn">View Projects</a>
-      <a href="#contact" class="btn">Hire Me</a>
+<!-- PARTICLES BACKGROUND -->
+<canvas id="particles"></canvas>
+
+<!-- NAVBAR -->
+<header class="navbar glass-nav">
+    <div class="logo">PE</div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#about" class="fade-link">About</a></li>
+            <li><a href="#skills" class="fade-link">Skills</a></li>
+            <li><a href="#projects" class="fade-link">Projects</a></li>
+            <li><a href="#contact" class="fade-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <button id="theme-toggle" class="theme-btn">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content fade-up">
+        <h1 class="hero-title">
+            <span class="hero-3d">Prince Dagogo Ekine</span>
+        </h1>
+
+        <h2 class="hero-subtitle">
+            <span id="typewriter"></span>
+        </h2>
+
+        <p class="hero-text">
+            I build scalable web applications, backend systems, and AI-powered tools using Java, Python, and JavaScript.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#projects" class="btn-primary">View Projects</a>
+            <a href="resume.pdf" class="btn-secondary">Download Resume</a>
+        </div>
     </div>
-  </header>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I am Prince Dagogo Ekine, a dedicated Full-Stack Developer with expertise in Java, Python, and JavaScript. Skilled in backend editing, API integration, and deploying applications on platforms such as Netlify and GitHub Pages. My portfolio demonstrates projects in stock tracking, property management, backend automation, and AI-driven insights. I thrive in collaborative environments, value clear communication, and aim to contribute to innovative teams while continuously advancing my technical skills.</p>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-grid">
-      <div>💻 Programming: Java, Python, JavaScript, HTML, CSS</div>
-      <div>⚙️ Backend: API integration, database management</div>
-      <div>🌐 Tools: Git/GitHub, Netlify, SQL</div>
+    <div class="hero-image fade-up">
+        <img src="images/a prince watermark.png" alt="Prince Ekine Logo">
     </div>
-  </section>
+</section>
 
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project-card">
-      <h3>Stockbit-Pro</h3>
-      <p>An advanced stock tracking and analysis web application built with JavaScript and backend APIs. Designed to help users monitor stock performance and trends.</p>
-      <div class="tags">
-        <span class="tag">JavaScript</span>
-        <span class="tag">API</span>
-        <span class="tag">Web App</span>
-      </div>
-      <a href="https://stockbitpro.netlify.app" target="_blank" class="btn">Live Demo</a>
-      <a href="https://github.com/PrinceEkine/stockbit-pro" target="_blank" class="btn">View on GitHub</a>
+<!-- ABOUT -->
+<section id="about" class="section fade-section">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-text">
+        I am Prince Dagogo Ekine, a Full-Stack Developer with experience building scalable applications,
+        automation tools, and AI-driven platforms. I enjoy solving real-world problems with clean and efficient code.
+    </p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section fade-section">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills-container">
+        <div class="skill">
+            <span>Java</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+        </div>
+
+        <div class="skill">
+            <span>Python</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+        </div>
+
+        <div class="skill">
+            <span>JavaScript</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="80"></div></div>
+        </div>
+
+        <div class="skill">
+            <span>HTML</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="95"></div></div>
+        </div>
+
+        <div class="skill">
+            <span>CSS</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+        </div>
+
+        <div class="skill">
+            <span>GitHub</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+        </div>
     </div>
-    <div class="project-card">
-      <h3>PropGuard-Elite</h3>
-      <p>A property management and security solution that integrates database management and backend logic to streamline property oversight.</p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">Database</span>
-        <span class="tag">Backend</span>
-      </div>
-      <a href="https://github.com/PrinceEkine/propguard-elite" target="_blank" class="btn">View on GitHub</a>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section fade-section">
+    <h2 class="section-title">Projects</h2>
+    <h3>Major prjects</h3>
+
+    <div class="projects-grid" id="local-projects">
+
+        <div class="project-card hover-zoom">
+            <h3>Stockbit-Pro</h3>
+            <p>Advanced stock tracking web application built with JavaScript and APIs.</p>
+            <div class="project-links">
+                <a href="https://stockbitpro.netlify.app">Live</a>
+                <a href="https://github.com/PrinceEkine/stockbit-pro">Code</a>
+            </div>
+        </div>
+
+        <div class="project-card hover-zoom">
+            <h3>PropGuard-Elite</h3>
+            <p>Property management backend system built with Python.</p>
+            <div class="project-links">
+                <a href="https://github.com/PrinceEkine/propguard-elite">Code</a>
+            </div>
+        </div>
+
+        <div class="project-card hover-zoom">
+            <h3>BitGrowth-AI</h3>
+            <p>AI powered investment insights platform.</p>
+            <div class="project-links">
+                <a href="https://bitgrowth-ai.netlify.app">Live</a>
+            </div>
+        </div>
+
+        <div class="project-card hover-zoom">
+            <h3>BitNexus</h3>
+            <p>A service rendering websites for home and tech spaces.</p>
+            <div class="project-links">
+                <a href="https://github.com/PrinceEkine/BitNexus2">Code</a>
+            </div>
+        </div>
+
+        <div class="project-card hover-zoom">
+            <h3>BitBox</h3>
+            <p>A movie streaming website. Currently available for sale.</p>
+            <div class="project-links">
+                <a href="https://github.com/PrinceEkine/bitbox">Code</a>
+            </div>
+        </div>
+
     </div>
-    <div class="project-card">
-      <h3>Bitbox</h3>
-      <p>A Python-based backend automation project focused on scripting, data handling, and workflow optimization.</p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">Automation</span>
-        <span class="tag">Backend</span>
-      </div>
-      <a href="https://github.com/PrinceEkine/bitbox" target="_blank" class="btn">View on GitHub</a>
+
+    <h3 class="section-subtitle">More from GitHub</h3>
+    <div id="github-projects" class="projects-grid"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section fade-section">
+    <h2 class="section-title">Contact Me</h2>
+
+    <form id="contact-form" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+
+    <p id="form-status"></p>
+</section>
+
+<footer class="footer">
+    <p>© 2026 Prince Dagogo Ekine</p>
+
+    <div class="contact-icons">
+      <a href="mailto:princedagogoekine@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/PrinceEkine" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/prince-dagogo-ekine-93b2993a3" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
-    <div class="project-card">
-      <h3>BitGrowth-AI</h3>
-      <p>An AI-driven stock insights platform deployed on Netlify, providing predictive analytics and real-time insights for investors.</p>
-      <div class="tags">
-        <span class="tag">AI</span>
-        <span class="tag">Netlify</span>
-        <span class="tag">JavaScript</span>
-      </div>
-      <a href="https://bitgrowth-ai.netlify.app" target="_blank" class="btn">Live Demo</a>
-    </div>
-  </section>
 
-  <!-- Scroll to Top Button -->
-  <button id="scrollTopBtn">↑ Top</button>
+</footer>
 
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="footer-content">
-      <h2>Services</h2>
-      <ul class="services-list">
-        <li>💻 Full-Stack Web Development (Java, Python, JavaScript)</li>
-        <li>⚙️ Backend Engineering & API Integration</li>
-        <li>📊 Data Analysis & Automation</li>
-        <li>🌐 Deployment (Netlify, GitHub Pages)</li>
-        <li>🤖 AI-driven Insights & Predictive Analytics</li>
-      </ul>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/github.js"></script>
+<script src="js/main.js"></script>
 
-      <h2>Contact</h2>
-      <div class="contact-icons">
-        <a href="mailto:princedagogoekine@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://github.com/PrinceEkine" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/prince-dagogo-ekine-93b2993a3" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="resume.pdf" target="_blank" title="Download Resume"><i class="fas fa-file-download"></i></a>
-      </div>
-
-      <p class="footer-note">© 2026 Prince Dagogo Ekine</p>
-    </div>
-  </footer>
-
-  <script>
-    // Show scroll-to-top button
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
-    window.onscroll = function() {
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        scrollTopBtn.style.display = "block";
-      } else {
-        scrollTopBtn.style.display = "none";
-      }
-    };
-    // Scroll to top
-    scrollTopBtn.onclick = function() {
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    };
-  </script>
 </body>
 </html>

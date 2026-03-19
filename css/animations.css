@@ -1,0 +1,50 @@
+/* Fade Up */
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade Section on Scroll */
+.fade-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s ease;
+}
+
+.fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover Zoom */
+.hover-zoom {
+    transition: 0.3s ease;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.05);
+}
+
+/* 3D Hero Text Reveal */
+.hero-3d {
+    animation: hero3D 1.5s ease forwards;
+}
+
+@keyframes hero3D {
+    0% {
+        opacity: 0;
+        transform: perspective(600px) rotateX(60deg);
+    }
+    100% {
+        opacity: 1;
+        transform: perspective(600px) rotateX(0deg);
+    }
+}
