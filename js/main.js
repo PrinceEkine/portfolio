@@ -68,17 +68,18 @@ fadeSections.forEach(section => observer.observe(section));
 
 
 (function () {
-    emailjs.init("nHUgtyaDb7Xp6h7kC");
+    emailjs.init("nHUgtyaDb7Xp6h7kC"); // public key
 })();
 
 document.getElementById("contact-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    emailjs.sendForm("service_l0iwzob", "template_wqob8kc", this)
+    emailjs.sendForm("service_l0iwzob", "template_29m0rsl", this)
         .then(() => {
             document.getElementById("form-status").textContent = "Message sent successfully!";
         })
-        .catch(() => {
+        .catch((error) => {
+            console.error("EmailJS error:", error);
             document.getElementById("form-status").textContent = "Message failed. Try again.";
         });
 
