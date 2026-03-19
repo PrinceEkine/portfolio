@@ -281,3 +281,118 @@ body.light {
     opacity: 0.7;
 }
 
+/* ------------------------------
+   MOBILE OPTIMIZATION
+--------------------------------*/
+
+/* Tablet and below */
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 120px 30px 60px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 22px;
+  }
+
+  .hero-image img {
+    width: 200px;
+    margin-top: 25px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 768px) {
+  /* Navbar collapses */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: var(--glass);
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    gap: 15px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .theme-btn {
+    font-size: 18px;
+  }
+
+  /* Hero text scaling */
+  .hero-title {
+    font-size: 30px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .hero-text {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Projects grid single column */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Skills spacing */
+  .skills-container {
+    padding: 0 15px;
+  }
+
+  /* Contact form full width */
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .hero-image img {
+    width: 160px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .contact-icons {
+    gap: 25px;
+  }
+
+  .contact-icons a {
+    font-size: 26px;
+  }
+}
