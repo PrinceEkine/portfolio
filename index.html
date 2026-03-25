@@ -1,305 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prince Dagogo Ekine | Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Dagogo Ekine | Portfolio</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/particles.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/particles.css">
 
-  <link rel="shortcut icon" href="images/a prince watermark.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/a prince watermark.png" type="image/x-icon">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Prince Dagogo Ekine",
-    "url": "https://princeekine.github.io/portfolio/",
-    "image": "https://princeekine.github.io/portfolio/images/profile.jpg",
-    "jobTitle": "Full-Stack Developer",
-    "knowsAbout": ["Java", "Python", "JavaScript", "Web Applications", "Backend Engineering", "AI Automation"],
-    "sameAs": [
-      "https://github.com/PrinceEkine",
-      "https://www.linkedin.com/in/prince-dagogo-ekine-93b2993a3",
-      "mailto:princedagogoekine@gmail.com"
-    ]
-  }
-  </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Prince Dagogo Ekine",
+      "url": "https://princeekine.github.io/portfolio/",
+      "image": "https://princeekine.github.io/portfolio/images/profile.jpg",
+      "jobTitle": "Full-Stack Developer",
+      "knowsAbout": ["Java", "Python", "JavaScript", "Web Applications", "Backend Engineering", "AI Automation"],
+      "sameAs": [
+        "https://github.com/PrinceEkine",
+        "https://www.linkedin.com/in/prince-dagogo-ekine-93b2993a3",
+        "mailto:princedagogoekine@gmail.com"
+      ]
+    }
+    </script>
 </head>
 
 <body>
 
-  <!-- PARTICLES BACKGROUND -->
-  <canvas id="particles" aria-hidden="true"></canvas>
+<!-- PARTICLES BACKGROUND -->
+<canvas id="particles"></canvas>
 
-  <!-- NAVBAR -->
-  <header class="navbar glass-nav" role="banner">
+<!-- NAVBAR -->
+<header class="navbar glass-nav">
     <div class="logo">PE</div>
 
-    <nav role="navigation" aria-label="Main navigation">
-      <ul class="nav-links">
-        <li><a href="#about" class="fade-link">About</a></li>
-        <li><a href="#skills" class="fade-link">Skills</a></li>
-        <li><a href="#projects" class="fade-link">Projects</a></li>
-        <li><a href="#contact" class="fade-link">Contact</a></li>
-      </ul>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#about" class="fade-link">About</a></li>
+            <li><a href="#skills" class="fade-link">Skills</a></li>
+            <li><a href="#projects" class="fade-link">Projects</a></li>
+            <li><a href="#contact" class="fade-link">Contact</a></li>
+        </ul>
     </nav>
 
-    <button id="theme-toggle" class="theme-btn" aria-pressed="false" aria-label="Toggle theme">
-      <i class="fa-solid fa-moon"></i>
+    <button id="theme-toggle" class="theme-btn">
+        <i class="fa-solid fa-moon"></i>
     </button>
-  </header>
+</header>
 
-  <!-- HERO -->
-  <main>
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="container hero-content fade-up">
-        <div>
-          <h1 id="hero-title" class="hero-title">
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content fade-up">
+        <h1 class="hero-title">
             <span class="hero-3d">Prince Dagogo Ekine</span>
-          </h1>
+        </h1>
 
-          <h2 class="hero-subtitle">
-            <span id="typewriter" aria-live="polite"></span>
-          </h2>
+        <h2 class="hero-subtitle">
+            <span id="typewriter"></span>
+        </h2>
 
-          <p class="hero-text">
+        <p class="hero-text">
             I build scalable web applications, backend systems, and AI-powered tools using Java, Python, and JavaScript.
-          </p>
-
-          <div class="hero-buttons">
-            <a href="#projects" class="btn-primary">View Projects</a>
-            <a href="resume.pdf" class="btn-secondary" download>Download Resume</a>
-          </div>
-        </div>
-
-        <div class="hero-image fade-up" aria-hidden="false">
-          <!-- Replace placeholder files with your real profile photo or logo in images/ -->
-          <img
-            src="images/a prince watermark.png"
-            srcset="images/a prince watermark-320.png 320w, images/a prince watermark-640.png 640w, images/a prince watermark-1024.png 1024w"
-            sizes="(max-width: 600px) 320px, (max-width: 1200px) 640px, 1024px"
-            alt="Prince Dagogo Ekine — profile photo or personal logo"
-            class="avatar"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section fade-section" aria-labelledby="about-title">
-      <div class="container">
-        <h2 id="about-title" class="section-title">About Me</h2>
-        <p class="section-text">
-          I am Prince Dagogo Ekine, a Full-Stack Developer with experience building scalable applications,
-          automation tools, and AI-driven platforms. I enjoy solving real-world problems with clean and efficient code.
         </p>
-      </div>
-    </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="section fade-section" aria-labelledby="skills-title">
-      <div class="container">
-        <h2 id="skills-title" class="section-title">Skills</h2>
-
-        <!-- Kept original skill bars but wrapped for modern layout -->
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="skill-header"><i class="fab fa-java"></i><strong>Java</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-level="90" style="width:90%"></div></div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-header"><i class="fab fa-python"></i><strong>Python</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-level="85" style="width:85%"></div></div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-header"><i class="fab fa-js-square"></i><strong>JavaScript</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-level="80" style="width:80%"></div></div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-header"><i class="fab fa-html5"></i><strong>HTML</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-level="95" style="width:95%"></div></div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-header"><i class="fab fa-css3-alt"></i><strong>CSS</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-level="90" style="width:90%"></div></div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-header"><i class="fab fa-github"></i><strong>GitHub</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-level="85" style="width:85%"></div></div>
-          </div>
+        <div class="hero-buttons">
+            <a href="#projects" class="btn-primary">View Projects</a>
+            <a href="resume.pdf" class="btn-secondary">Download Resume</a>
         </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section fade-section" aria-labelledby="projects-title">
-      <div class="container">
-        <h2 id="projects-title" class="section-title">Projects</h2>
-        <p class="section-text">Selected projects with screenshots, short descriptions, and links to live demos and code.</p>
-
-        <div class="projects-grid" id="local-projects">
-
-          <!-- Stockbit-Pro: has live URL — image added -->
-          <article class="project-card hover-zoom" aria-labelledby="p-stockbit-title">
-            <img
-              src="images/projects/stockbit-pro-placeholder.png"
-              srcset="images/projects/stockbit-pro-640.png 640w, images/projects/stockbit-pro-1200.png 1200w"
-              sizes="(max-width: 600px) 100vw, 640px"
-              alt="Stockbit-Pro screenshot"
-              class="project-thumb"
-              loading="lazy"
-              data-image-source="https://stockbitpro.netlify.app"
-            />
-            <div class="project-body">
-              <h3 id="p-stockbit-title">Stockbit-Pro</h3>
-              <p class="project-desc">Advanced stock tracking web application built with JavaScript and APIs.</p>
-              <div class="project-links">
-                <a href="https://stockbitpro.netlify.app" target="_blank" rel="noopener">Live</a>
-                <a href="https://github.com/PrinceEkine/stockbit-pro" target="_blank" rel="noopener">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- PropGuard-Elite: no live URL — image intentionally not added -->
-          <article class="project-card hover-zoom" aria-labelledby="p-propguard-title">
-            <div class="project-body">
-              <h3 id="p-propguard-title">PropGuard-Elite</h3>
-              <p class="project-desc">Property management backend system built with Python.</p>
-              <div class="project-links">
-                <a href="https://github.com/PrinceEkine/propguard-elite" target="_blank" rel="noopener">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- BitGrowth-AI: has live URL — image added -->
-          <article class="project-card hover-zoom" aria-labelledby="p-bitgrowth-title">
-            <img
-              src="images/projects/bitgrowth-ai-placeholder.png"
-              srcset="images/projects/bitgrowth-ai-640.png 640w, images/projects/bitgrowth-ai-1200.png 1200w"
-              sizes="(max-width: 600px) 100vw, 640px"
-              alt="BitGrowth-AI screenshot"
-              class="project-thumb"
-              loading="lazy"
-              data-image-source="https://bitgrowth-ai.netlify.app"
-            />
-            <div class="project-body">
-              <h3 id="p-bitgrowth-title">BitGrowth-AI</h3>
-              <p class="project-desc">AI powered investment insights platform.</p>
-              <div class="project-links">
-                <a href="https://bitgrowth-ai.netlify.app" target="_blank" rel="noopener">Live</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- BitNexus: no live URL — image intentionally not added -->
-          <article class="project-card hover-zoom" aria-labelledby="p-bitnexus-title">
-            <div class="project-body">
-              <h3 id="p-bitnexus-title">BitNexus</h3>
-              <p class="project-desc">A service rendering websites for home and tech spaces.</p>
-              <div class="project-links">
-                <a href="https://github.com/PrinceEkine/BitNexus2" target="_blank" rel="noopener">Code</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- BitBox: no live URL — image intentionally not added -->
-          <article class="project-card hover-zoom" aria-labelledby="p-bitbox-title">
-            <div class="project-body">
-              <h3 id="p-bitbox-title">BitBox</h3>
-              <p class="project-desc">A movie streaming website. Currently available for sale.</p>
-              <div class="project-links">
-                <a href="https://github.com/PrinceEkine/bitbox" target="_blank" rel="noopener">Code</a>
-              </div>
-            </div>
-          </article>
-
-        </div>
-
-        <h3 class="section-subtitle">More from GitHub</h3>
-        <div id="github-projects" class="projects-grid" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section fade-section" aria-labelledby="contact-title">
-      <div class="container">
-        <h2 id="contact-title" class="section-title">Contact Me</h2>
-
-        <form id="contact-form" class="contact-form" aria-label="Contact form">
-          <label for="name" class="sr-only">Your Name</label>
-          <input id="name" type="text" name="name" placeholder="Your Name" required autocomplete="name">
-
-          <label for="email" class="sr-only">Your Email</label>
-          <input id="email" type="email" name="email" placeholder="Your Email" required autocomplete="email">
-
-          <label for="message" class="sr-only">Your Message</label>
-          <textarea id="message" name="message" placeholder="Your Message" rows="5" required autocomplete="off"></textarea>
-
-          <button type="submit" class="btn-primary">Send Message</button>
-        </form>
-
-        <p id="form-status" role="status" aria-live="polite"></p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Prince Dagogo Ekine. All rights reserved.</p>
-
-      <div class="contact-icons" aria-hidden="false">
-        <a href="mailto:princedagogoekine@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://github.com/PrinceEkine" target="_blank" title="GitHub" rel="noopener"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/prince-dagogo-ekine-93b2993a3" target="_blank" title="LinkedIn" rel="noopener"><i class="fab fa-linkedin"></i></a>
-      </div>
     </div>
-  </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script src="js/theme.js"></script>
-  <script src="js/particles.js"></script>
-  <script src="js/github.js"></script>
-  <script src="js/main.js"></script>
+    <div class="hero-image fade-up">
+        <img src="images/a prince watermark.png" alt="Prince Ekine Logo">
+    </div>
+</section>
 
-  <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+<!-- ABOUT -->
+<section id="about" class="section fade-section">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-text">
+        I am Prince Dagogo Ekine, a Full-Stack Developer with experience building scalable applications,
+        automation tools, and AI-driven platforms. I enjoy solving real-world problems with clean and efficient code.
+    </p>
+</section>
 
-    // Contact form: friendly success/error messages (placeholder behavior)
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
+<!-- SKILLS -->
+<section id="skills" class="section fade-section">
+    <h2 class="section-title">Skills</h2>
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      status.textContent = 'Sending message…';
-      // Replace with your email sending logic (EmailJS or server endpoint).
-      setTimeout(() => {
-        status.textContent = 'Thanks for reaching out! I will reply within 48 hours.';
-        form.reset();
-      }, 800);
-    });
+    <div class="skills-container">
+        <div class="skill">
+            <span>Java</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+        </div>
 
-    // Note about project images:
-    // - For projects that have a live URL (Stockbit-Pro, BitGrowth-AI) I added image placeholders.
-    // - Save real screenshots into images/projects/ (e.g., stockbit-pro-1200.png, bitgrowth-ai-1200.png)
-    // - For projects without a live URL (PropGuard-Elite, BitNexus, BitBox) no image was added per your instruction.
-  </script>
+        <div class="skill">
+            <span>Python</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+        </div>
+
+        <div class="skill">
+            <span>JavaScript</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="80"></div></div>
+        </div>
+
+        <div class="skill">
+            <span>HTML</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="95"></div></div>
+        </div>
+
+        <div class="skill">
+            <span>CSS</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+        </div>
+
+        <div class="skill">
+            <span>GitHub</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section fade-section">
+    <h2 class="section-title">Projects</h2>
+    <h3>Major projects</h3>
+
+    <div class="projects-grid" id="local-projects">
+
+        <div class="project-card hover-zoom">
+            <h3>Stockbit-Pro</h3>
+            <p>Advanced stock tracking web application built with JavaScript and APIs.</p>
+            <div class="project-links">
+                <a href="https://stockbitpro.netlify.app">Live</a>
+                <a href="https://github.com/PrinceEkine/stockbit-pro">Code</a>
+            </div>
+        </div>
+
+        <div class="project-card hover-zoom">
+            <h3>PropGuard-Elite</h3>
+            <p>Property management backend system built with Python.</p>
+            <div class="project-links">
+                <a href="https://github.com/PrinceEkine/propguard-elite">Code</a>
+            </div>
+        </div>
+
+        <div class="project-card hover-zoom">
+            <h3>BitGrowth-AI</h3>
+            <p>AI powered investment insights platform.</p>
+            <div class="project-links">
+                <a href="https://bitgrowth-ai.netlify.app">Live</a>
+            </div>
+        </div>
+
+        <div class="project-card hover-zoom">
+            <h3>BitNexus</h3>
+            <p>A service rendering websites for home and tech spaces.</p>
+            <div class="project-links">
+                <a href="https://github.com/PrinceEkine/BitNexus2">Code</a>
+            </div>
+        </div>
+
+        <div class="project-card hover-zoom">
+            <h3>BitBox</h3>
+            <p>A movie streaming website. Currently available for sale.</p>
+            <div class="project-links">
+                <a href="https://github.com/PrinceEkine/bitbox">Code</a>
+            </div>
+        </div>
+
+    </div>
+
+    <h3 class="section-subtitle">More from GitHub</h3>
+    <div id="github-projects" class="projects-grid"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section fade-section">
+    <h2 class="section-title">Contact Me</h2>
+
+    <form id="contact-form" class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required autocomplete="name">
+      <input type="email" name="email" placeholder="Your Email" required autocomplete="email">
+      <textarea name="message" placeholder="Your Message" rows="5" required autocomplete="off"></textarea>
+      <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+
+
+    <p id="form-status"></p>
+</section>
+
+<footer class="footer">
+<p>&copy; <span id="year"></span> Prince Dagogo Ekine. All rights reserved.</p>
+
+    <div class="contact-icons">
+      <a href="mailto:princedagogoekine@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/PrinceEkine" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/prince-dagogo-ekine-93b2993a3" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/github.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
