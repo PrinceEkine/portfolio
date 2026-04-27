@@ -38,6 +38,20 @@
 
 <body>
 
+<!-- LOADING SCREEN -->
+<div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+        <div class="loading-logo">PE</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <p class="loading-text">Loading Portfolio...</p>
+    </div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress" class="scroll-progress"></div>
+
 <!-- PARTICLES BACKGROUND -->
 <canvas id="particles"></canvas>
 
@@ -48,15 +62,23 @@
     <nav>
         <ul class="nav-links">
             <li><a href="#about" class="fade-link">About</a></li>
+            <li><a href="#experience" class="fade-link">Experience</a></li>
             <li><a href="#skills" class="fade-link">Skills</a></li>
             <li><a href="#projects" class="fade-link">Projects</a></li>
             <li><a href="#contact" class="fade-link">Contact</a></li>
         </ul>
     </nav>
 
-    <button id="theme-toggle" class="theme-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
+    <div class="nav-controls">
+        <button id="theme-toggle" class="theme-btn">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="hamburger" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
 </header>
 
 <!-- HERO -->
@@ -71,7 +93,7 @@
         </h2>
 
         <p class="hero-text">
-            I build scalable web applications, backend systems, and AI-powered tools using Java, Python, and JavaScript.
+            I build scalable web applications, backend systems, and AI-powered tools using Java, HTML, React, Typescript, Python, and JavaScript.
         </p>
 
         <div class="hero-buttons">
@@ -94,6 +116,45 @@
     </p>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience" class="section fade-section">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3>Full-Stack Developer</h3>
+                <span class="timeline-date">2024 - Present</span>
+                <p>Developing scalable web applications and backend systems using Java, Python, and JavaScript. Building AI-powered automation tools and platforms.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">HTML</span>
+                    <span class="tech-badge">CSS</span>
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Node.js</span>
+                    <span class="tech-badge">Typescript</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3>Backend Developer</h3>
+                <span class="timeline-date">2024 - present</span>
+                <p>Built robust backend systems and APIs for property management and service platforms. Implemented secure authentication and data processing solutions.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">Rust</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">Docker</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- SKILLS -->
 <section id="skills" class="section fade-section">
     <h2 class="section-title">Skills</h2>
@@ -112,6 +173,16 @@
         <div class="skill">
             <span>JavaScript</span>
             <div class="skill-bar"><div class="skill-fill" data-level="80"></div></div>
+        </div> 
+
+        <div class="skill">
+            <span>TypeScript</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
+        </div> 
+
+        <div class="skill">
+            <span>React</span>
+            <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
         </div>
 
         <div class="skill">
@@ -139,51 +210,87 @@
     <div class="projects-grid" id="local-projects">
 
         <div class="project-card hover-zoom">
+            <div class="project-image">
+                <img src="images/StockbitPro.png" alt="Stockbit-Pro Project Screenshot" loading="lazy">
+            </div>
             <h3>Stockbit-Pro</h3>
-            <p>Advanced stock tracking web application built with JavaScript and APIs.</p>
+            <p>Advanced stock tracking web application built with React and APIs.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Typescript</span>
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">APIs</span>
+            </div>
             <div class="project-links">
-                <a href="https://stockbitpro.netlify.app">Live</a>
-                <a href="https://github.com/PrinceEkine/stockbit-pro">Code</a>
+                <a href="https://stockbitpro.netlify.app" class="btn-live">Live Demo</a>
+                <a href="https://github.com/PrinceEkine/stockbit-pro" class="btn-code">View Code</a>
             </div>
         </div>
 
         <div class="project-card hover-zoom">
-            <h3>PropGuard-Elite</h3>
-            <p>Property management backend system built with Python.</p>
+            <div class="project-image">
+                <img src="images/Gazneft groups.png" alt="Gazneft-Groups Project Screenshot" loading="lazy">
+            </div>
+            <h3>Gazneft-Groups</h3>
+            <p>A powerful multi-account webmail system with AI-powered tools and efficient inbox management</p>
+            <div class="project-tech">
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">APIs</span>
+            </div>
             <div class="project-links">
-                <a href="https://github.com/PrinceEkine/propguard-elite">Code</a>
+                <a href="https://gazneftgroup.netlify.app/" class="btn-live">Live Demo</a>
+                <a href="https://github.com/PrinceEkine/Gazneftgroup" class="btn-code">View Code</a>
             </div>
         </div>
 
-        <div class="project-card hover-zoom">
-            <h3>BitGrowth-AI</h3>
-            <p>AI powered investment insights platform.</p>
-            <div class="project-links">
-                <a href="https://bitgrowth-ai.netlify.app">Live</a>
-            </div>
-        </div>
 
         <div class="project-card hover-zoom">
+            <div class="project-image">
+                <img src="images/Bitnexus.png" alt="BitNexus Project Screenshot" loading="lazy">
+            </div>
             <h3>BitNexus</h3>
-            <p>A service rendering websites for home and tech spaces.</p>
+            <p>A premium Service Management Platform for professional home care on-demand, featuring customer booking, technician management, and operational dashboards.</p>
+            <div class="project-tech">
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">APIs</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">PostgreSQL</span>
+            </div>
             <div class="project-links">
-                <a href="https://github.com/PrinceEkine/BitNexus2">Code</a>
+                <a href="https://github.com/PrinceEkine/BitNexus2" class="btn-code">View Code</a>
             </div>
         </div>
 
         <div class="project-card hover-zoom">
-            <h3>BitBox</h3>
-            <p>A movie streaming website. Currently available for sale.</p>
+            <div class="project-image">
+                <img src="images/AutoBit Rescue.png" alt="AutoBit Rescue Project Screenshot" loading="lazy">
+            </div>
+            <h3>AutoBit Rescue</h3>
+            <p>A comprehensive car maintenance and emergency breakdown service platform featuring real-time service requests, an admin dispatch dashboard, and AI-powered assistance.</p>
+            <div class="project-tech">
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">API</span>
+            </div>
             <div class="project-links">
-                <a href="https://github.com/PrinceEkine/bitbox">Code</a>
+                <a href="https://github.com/PrinceEkine/AutoBit-Rescue" class="btn-code">View Code</a>
             </div>
         </div>
 
     </div>
+    <br>
 
     <h3 class="section-subtitle">More from GitHub</h3>
     <div id="github-projects" class="projects-grid"></div>
 </section>
+
+<!-- BACK TO TOP BUTTON -->
+<button id="back-to-top" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
 <!-- CONTACT -->
 <section id="contact" class="section fade-section">
