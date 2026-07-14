@@ -52,9 +52,24 @@ the Netlify Functions, which run server-side.
 4. Deploy. The chatbot widget and contact form will start working once
    `QWEN_API_KEY` and `RESEND_API_KEY` are set.
 
-Note: this site can no longer be served purely from GitHub Pages, since the
-chatbot and contact form depend on server-side functions. Point your domain
-at the Netlify deployment instead.
+### Keeping GitHub Pages live too
+
+GitHub Pages can still serve the static site — it just can't run the
+functions (no way to store secrets there). `js/config.js` handles this: it
+points chatbot/contact-form requests at your Netlify site whenever the page
+isn't already being served from `*.netlify.app` (the Netlify functions send
+permissive CORS headers, so cross-origin calls from GitHub Pages work fine).
+
+To enable it:
+
+1. Deploy to Netlify as above and note your site's URL (Site configuration →
+   Domain management), e.g. `https://princeekine-portfolio.netlify.app`.
+2. Edit `js/config.js` and replace `NETLIFY_SITE_URL` with that URL, then
+   commit and push.
+3. In the GitHub repo, go to **Settings → Pages** and set Source to "Deploy
+   from a branch", branch `main`, folder `/ (root)`. GitHub Pages will then
+   serve the site at `https://princeekine.github.io/portfolio/`, with the
+   chatbot and contact form calling out to Netlify in the background.
 
 ## Features
 

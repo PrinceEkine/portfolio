@@ -75,7 +75,7 @@ chatbotForm.addEventListener("submit", async (e) => {
     showTyping();
 
     try {
-        const res = await fetch("/.netlify/functions/chat", {
+        const res = await fetch(`${API_BASE_URL}/.netlify/functions/chat`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

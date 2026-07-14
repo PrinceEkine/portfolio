@@ -141,7 +141,7 @@ document.getElementById("contact-form").addEventListener("submit", async functio
     formStatus.textContent = "";
 
     try {
-        const res = await fetch("/.netlify/functions/contact", {
+        const res = await fetch(`${API_BASE_URL}/.netlify/functions/contact`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
