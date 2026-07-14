@@ -1,0 +1,12 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prince Dagogo Ekine's portfolio site with AI chatbot and Resend-powered contact form",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "resend": "^4.0.1"
+  }
+}

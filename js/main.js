@@ -128,38 +128,42 @@ const observer = new IntersectionObserver(entries => {
 fadeSections.forEach(section => observer.observe(section));
 
 
-(function () {
-    emailjs.init("nHUgtyaDb7Xp6h7kC"); // public key
-})();
-
-document.getElementById("contact-form").addEventListener("submit", function (e) {
+document.getElementById("contact-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const formStatus = document.getElementById("form-status");
     const submitBtn = this.querySelector("button");
+    const formData = new FormData(this);
 
     // Show loading state
     submitBtn.textContent = "Sending...";
     submitBtn.disabled = true;
     formStatus.textContent = "";
 
-    emailjs.sendForm("service_l0iwzob", "template_29m0rsl", this)
-        .then(() => {
-            formStatus.textContent = "Message sent successfully! 🎉";
-            formStatus.style.color = "var(--gold)";
-            submitBtn.textContent = "Send Message";
-            submitBtn.disabled = false;
-
-            // Add success animation
-            formStatus.style.animation = "successPulse 0.6s ease";
-
-            this.reset();
-        })
-        .catch((error) => {
-            console.error("EmailJS error:", error);
-            formStatus.textContent = "Message failed. Please try again.";
-            formStatus.style.color = "#ff6b6b";
-            submitBtn.textContent = "Send Message";
-            submitBtn.disabled = false;
+    try {
+        const res = await fetch("/.netlify/functions/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: formData.get("name"),
+                email: formData.get("email"),
+                message: formData.get("message"),
+            }),
         });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Failed to send message.");
+
+        formStatus.textContent = "Message sent successfully! 🎉";
+        formStatus.style.color = "var(--gold)";
+        formStatus.style.animation = "successPulse 0.6s ease";
+        this.reset();
+    } catch (error) {
+        console.error("Contact form error:", error);
+        formStatus.textContent = error.message || "Message failed. Please try again.";
+        formStatus.style.color = "#ff6b6b";
+    } finally {
+        submitBtn.textContent = "Send Message";
+        submitBtn.disabled = false;
+    }
 });

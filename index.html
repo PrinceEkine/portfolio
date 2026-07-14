@@ -292,6 +292,35 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 
+<!-- AI CHATBOT -->
+<button id="chatbot-toggle" class="chatbot-toggle" aria-label="Open chat with Prince's AI assistant">
+    <i class="fa-solid fa-comment-dots"></i>
+</button>
+
+<div id="chatbot-panel" class="chatbot-panel">
+    <div class="chatbot-header">
+        <div class="chatbot-header-info">
+            <span class="chatbot-avatar"><i class="fa-solid fa-robot"></i></span>
+            <div>
+                <h3>Portfolio Assistant</h3>
+                <span class="chatbot-status">Ask me about Prince</span>
+            </div>
+        </div>
+        <button id="chatbot-close" class="chatbot-close" aria-label="Close chat">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <div id="chatbot-messages" class="chatbot-messages"></div>
+
+    <form id="chatbot-form" class="chatbot-input-row">
+        <input type="text" id="chatbot-input" placeholder="Ask about Prince's skills, projects..." autocomplete="off" maxlength="2000" required>
+        <button type="submit" class="chatbot-send" aria-label="Send message">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+    </form>
+</div>
+
 <!-- CONTACT -->
 <section id="contact" class="section fade-section">
     <h2 class="section-title">Contact Me</h2>
@@ -319,11 +348,11 @@
 </footer>
 
 <!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/particles.js"></script>
 <script src="js/github.js"></script>
 <script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
