@@ -8,7 +8,7 @@ fetch("https://api.github.com/users/PrinceEkine/repos")
             .sort((a, b) => b.stargazers_count - a.stargazers_count)
             .slice(0, 6);
 
-        topRepos.forEach(repo => {
+        topRepos.forEach((repo, index) => {
             const card = document.createElement("div");
             card.className = "project-card hover-zoom";
 
@@ -22,6 +22,7 @@ fetch("https://api.github.com/users/PrinceEkine/repos")
             `;
 
             githubContainer.appendChild(card);
+            if (window.observeReveal) window.observeReveal(card, index);
         });
     })
     .catch(() => {

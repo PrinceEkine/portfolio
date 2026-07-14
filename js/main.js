@@ -127,6 +127,34 @@ const observer = new IntersectionObserver(entries => {
 
 fadeSections.forEach(section => observer.observe(section));
 
+// Staggered scroll reveal for cards/timeline/skills. Groups items by their
+// parent container so each group's stagger sequence starts fresh.
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+function observeReveal(el, index) {
+    el.classList.add("reveal-item");
+    el.style.setProperty("--stagger-index", index % 6);
+    revealObserver.observe(el);
+}
+window.observeReveal = observeReveal;
+
+function setupReveal(itemSelector, groupSelector) {
+    document.querySelectorAll(groupSelector).forEach(group => {
+        group.querySelectorAll(itemSelector).forEach((el, index) => observeReveal(el, index));
+    });
+}
+
+setupReveal(".project-card", ".projects-grid");
+setupReveal(".timeline-item", ".timeline");
+setupReveal(".skill", ".skills-container");
+
 
 document.getElementById("contact-form").addEventListener("submit", async function (e) {
     e.preventDefault();
