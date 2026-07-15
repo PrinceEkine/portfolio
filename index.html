@@ -83,10 +83,7 @@
 </header>
 
 <!-- HERO -->
-<section class="hero">
-    <video class="hero-bg-video" src="images/avatar/prince-avatar-loop.mp4" poster="images/avatar/prince-avatar-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
-    <div class="hero-bg-overlay"></div>
-
+<section class="hero" id="hero">
     <div class="hero-content fade-up">
         <h1 class="hero-title">
             <span class="hero-3d">Prince Dagogo Ekine</span>
@@ -293,6 +290,14 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 
+<!-- PERSISTENT AVATAR VIDEO: full-bleed in the hero, docks into a small
+     pinned panel with a different "camera angle" + caption per section -->
+<div id="avatar-video-wrap" class="avatar-video-wrap">
+    <video id="avatar-video" class="avatar-video" src="images/avatar/prince-avatar-loop.mp4" poster="images/avatar/prince-avatar-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+    <div id="avatar-overlay" class="avatar-overlay"></div>
+</div>
+<div id="avatar-caption" class="avatar-caption"></div>
+
 <!-- AI CHATBOT -->
 <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Open chat with Prince's AI assistant">
     <i class="fa-solid fa-comment-dots"></i>
@@ -354,6 +359,7 @@
 <script src="js/particles.js"></script>
 <script src="js/github.js"></script>
 <script src="js/main.js"></script>
+<script src="js/avatar-camera.js"></script>
 <script src="js/chatbot.js"></script>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
