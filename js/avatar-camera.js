@@ -1,9 +1,10 @@
 const heroSection = document.getElementById("hero");
 const avatarWrap = document.getElementById("avatar-video-wrap");
 const avatarVideo = document.getElementById("avatar-video");
+const avatarOverlay = document.getElementById("avatar-overlay");
 const avatarCaption = document.getElementById("avatar-caption");
 
-if (heroSection && avatarWrap && avatarVideo && avatarCaption) {
+if (heroSection && avatarWrap && avatarVideo && avatarOverlay && avatarCaption) {
     // Each entry simulates a different "camera angle" on the same fixed
     // shot: how far zoomed in and which part of the frame is centered.
     const angles = {
@@ -43,11 +44,11 @@ if (heroSection && avatarWrap && avatarVideo && avatarCaption) {
         (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    avatarWrap.classList.remove("docked");
+                    avatarOverlay.classList.remove("dimmed");
                     applyAngle("hero");
                     setCaption(null);
                 } else {
-                    avatarWrap.classList.add("docked");
+                    avatarOverlay.classList.add("dimmed");
                 }
             });
         },
