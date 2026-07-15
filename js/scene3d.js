@@ -16,10 +16,18 @@ const canvas = document.getElementById("scene3d-canvas");
 const overlay = document.getElementById("avatar-overlay");
 const caption = document.getElementById("avatar-caption");
 
+// Scene background/fog/lighting swap between a dark moody scene and a
+// bright one depending on the site's light/dark theme, not just a CSS
+// overlay tint over an always-dark scene.
+const THEME = {
+    dark: { bg: 0x0d0d0f, fogNear: 6, fogFar: 14, ambient: 0x2e1065, ambientIntensity: 1.4 },
+    light: { bg: 0xf3eefc, fogNear: 7, fogFar: 16, ambient: 0xd9c7f5, ambientIntensity: 2.2 },
+};
+
 if (canvas) {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0d0d0f);
-    scene.fog = new THREE.Fog(0x0d0d0f, 6, 14);
+    scene.background = new THREE.Color(THEME.dark.bg);
+    scene.fog = new THREE.Fog(THEME.dark.bg, THEME.dark.fogNear, THEME.dark.fogFar);
 
     const camera = new THREE.PerspectiveCamera(
         40,
@@ -36,7 +44,8 @@ if (canvas) {
     // Lights: bright gold key on the camera-facing (-Z) side where the
     // character is actually visible from, purple rim from behind (+Z) for
     // an edge glow, soft purple fill near the desk.
-    scene.add(new THREE.AmbientLight(PALETTE.purpleDark, 1.4));
+    const ambientLight = new THREE.AmbientLight(THEME.dark.ambient, THEME.dark.ambientIntensity);
+    scene.add(ambientLight);
 
     const keyLight = new THREE.DirectionalLight(PALETTE.gold, 3.2);
     keyLight.position.set(-2, 3.2, -2.8);
@@ -50,36 +59,28 @@ if (canvas) {
     fillLight.position.set(-0.5, 1.3, -1.6);
     scene.add(fillLight);
 
-    // A 4-step gradient map with hard (nearest-filtered) steps is what
-    // turns smooth PBR shading into a banded cartoon/cel-shaded look.
-    const toonSteps = 4;
-    const toonData = new Uint8Array(toonSteps);
-    for (let i = 0; i < toonSteps; i++) {
-        toonData[i] = Math.floor((i / (toonSteps - 1)) * 255);
+    // Smoothly cross-fades the scene background/fog/ambient toward
+    // whichever theme is active, driven by the render loop below.
+    let themeTarget = THEME.dark;
+    const currentBg = new THREE.Color(THEME.dark.bg);
+    const currentAmbient = new THREE.Color(THEME.dark.ambient);
+
+    function applyTheme(isLight) {
+        themeTarget = isLight ? THEME.light : THEME.dark;
     }
-    const toonGradientMap = new THREE.DataTexture(toonData, toonSteps, 1, THREE.RedFormat);
-    toonGradientMap.needsUpdate = true;
-    toonGradientMap.magFilter = THREE.NearestFilter;
-    toonGradientMap.minFilter = THREE.NearestFilter;
+    applyTheme(document.body.classList.contains("light"));
+    new MutationObserver(() => {
+        applyTheme(document.body.classList.contains("light"));
+    }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
     // Untextured meshes get a vertical gradient tint in the site's actual
     // purple/gold brand colors (matching skill bars, buttons, section
-    // titles), cel-shaded via MeshToonMaterial, plus a matching emissive
-    // glow so the model stays clearly visible against the dark overlay
-    // instead of relying purely on reflected light. A slightly-scaled,
-    // back-face black shell behind each mesh gives the classic cartoon
-    // outline.
+    // titles), plus a matching emissive glow so the model stays clearly
+    // visible against the background in either theme instead of relying
+    // purely on reflected light.
     function applyGradientMaterial(object, topColor, bottomColor, emissiveIntensity) {
-        // Snapshot the mesh list before mutating anything -- adding the
-        // outline as a child *during* traverse() would make traverse()
-        // walk into it too (live children array), recursively spawning
-        // outlines-of-outlines forever.
-        const meshes = [];
         object.traverse((child) => {
-            if (child.isMesh) meshes.push(child);
-        });
-
-        meshes.forEach((child) => {
+            if (!child.isMesh) return;
             const geom = child.geometry;
             geom.computeBoundingBox();
             const { min, max } = geom.boundingBox;
@@ -97,25 +98,15 @@ if (canvas) {
                 colors[i * 3 + 2] = tmp.b;
             }
             geom.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-            child.material = new THREE.MeshToonMaterial({
+            child.material = new THREE.MeshStandardMaterial({
                 vertexColors: true,
-                gradientMap: toonGradientMap,
+                metalness: 0.35,
+                roughness: 0.5,
                 emissive: new THREE.Color(bottomColor).lerp(new THREE.Color(topColor), 0.5),
                 emissiveIntensity,
             });
             child.castShadow = false;
             child.receiveShadow = false;
-
-            const outlineMaterial = new THREE.MeshBasicMaterial({
-                color: 0x0a0a12,
-                side: THREE.BackSide,
-            });
-            const outline = child.isSkinnedMesh
-                ? new THREE.SkinnedMesh(geom, outlineMaterial)
-                : new THREE.Mesh(geom, outlineMaterial);
-            if (child.isSkinnedMesh) outline.bind(child.skeleton, child.bindMatrix);
-            outline.scale.multiplyScalar(1.035);
-            child.add(outline);
         });
     }
 
@@ -213,6 +204,15 @@ if (canvas) {
         currentLook.lerp(new THREE.Vector3(...target.look), 0.03);
         camera.position.copy(currentPos);
         camera.lookAt(currentLook);
+
+        currentBg.lerp(new THREE.Color(themeTarget.bg), 0.04);
+        currentAmbient.lerp(new THREE.Color(themeTarget.ambient), 0.04);
+        scene.background.copy(currentBg);
+        scene.fog.color.copy(currentBg);
+        scene.fog.near += (themeTarget.fogNear - scene.fog.near) * 0.04;
+        scene.fog.far += (themeTarget.fogFar - scene.fog.far) * 0.04;
+        ambientLight.color.copy(currentAmbient);
+        ambientLight.intensity += (themeTarget.ambientIntensity - ambientLight.intensity) * 0.04;
 
         renderer.render(scene, camera);
     }
