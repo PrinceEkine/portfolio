@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/particles.css">
-    <link rel="stylesheet" href="css/techcube.css">
+    <link rel="stylesheet" href="css/floating-avatar.css">
 
     <link rel="shortcut icon" href="images/a prince watermark.png" type="image/x-icon">
 
@@ -103,23 +103,6 @@
         </div>
     </div>
 
-    <div class="hero-image fade-up">
-        <div class="tech-cube-scene">
-            <p class="tech-cube-hint">Tech Stack <span>(press a key, or tap)</span></p>
-            <div class="tech-cube-grid" id="tech-cube-grid">
-                <div class="tech-key" data-key="j" data-name="Java" style="--tile:#f89820;--tile-dark:#a85f0f;"><i class="fa-brands fa-java"></i></div>
-                <div class="tech-key" data-key="p" data-name="Python" style="--tile:#3776ab;--tile-dark:#1f4864;"><i class="fa-brands fa-python"></i></div>
-                <div class="tech-key" data-key="s" data-name="JavaScript" style="--tile:#f7df1e;--tile-dark:#9c8e0f;"><i class="fa-brands fa-js"></i></div>
-                <div class="tech-key" data-key="r" data-name="React" style="--tile:#61dafb;--tile-dark:#2e7f97;"><i class="fa-brands fa-react"></i></div>
-                <div class="tech-key" data-key="h" data-name="HTML5" style="--tile:#e34f26;--tile-dark:#8f2f16;"><i class="fa-brands fa-html5"></i></div>
-                <div class="tech-key" data-key="c" data-name="CSS3" style="--tile:#264de4;--tile-dark:#152c87;"><i class="fa-brands fa-css3-alt"></i></div>
-                <div class="tech-key" data-key="g" data-name="GitHub" style="--tile:#6e5494;--tile-dark:#3c2d52;"><i class="fa-brands fa-github"></i></div>
-                <div class="tech-key" data-key="n" data-name="Node.js" style="--tile:#3c873a;--tile-dark:#1f4a1e;"><i class="fa-brands fa-node-js"></i></div>
-                <div class="tech-key" data-key="d" data-name="Docker" style="--tile:#0db7ed;--tile-dark:#086a8a;"><i class="fa-brands fa-docker"></i></div>
-            </div>
-            <div class="tech-cube-label" id="tech-cube-label"></div>
-        </div>
-    </div>
 </section>
 
 <!-- ABOUT -->
@@ -307,6 +290,14 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 
+<!-- FLOATING AVATAR -->
+<div id="floating-avatar" class="floating-avatar">
+    <div class="floating-avatar-frame">
+        <video src="images/avatar/prince-avatar-loop.mp4" poster="images/avatar/prince-avatar-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+    </div>
+    <div class="floating-avatar-caption" id="floating-avatar-caption">Hi, I'm Prince 👋</div>
+</div>
+
 <!-- AI CHATBOT -->
 <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Open chat with Prince's AI assistant">
     <i class="fa-solid fa-comment-dots"></i>
@@ -366,9 +357,9 @@
 <script src="js/config.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/particles.js"></script>
-<script src="js/techcube.js"></script>
 <script src="js/github.js"></script>
 <script src="js/main.js"></script>
+<script src="js/floating-avatar.js"></script>
 <script src="js/chatbot.js"></script>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();

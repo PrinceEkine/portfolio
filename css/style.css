@@ -201,7 +201,7 @@ body.light {
     min-height: 100vh;
     padding: 150px 50px 80px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -263,10 +263,6 @@ body.light {
     color: black;
 }
 
-.hero-image img {
-    width: 260px;
-    filter: drop-shadow(0 0 20px var(--purple));
-}
 
 
 .section {
@@ -581,11 +577,6 @@ body.light {
     font-size: 22px;
   }
 
-  .hero-image img {
-    width: 200px;
-    margin-top: 25px;
-  }
-
   .nav-links {
     gap: 20px;
   }
@@ -701,10 +692,6 @@ body.light {
 
   .hero-subtitle {
     font-size: 16px;
-  }
-
-  .hero-image img {
-    width: 160px;
   }
 
   .section-title {
