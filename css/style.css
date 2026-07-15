@@ -906,6 +906,24 @@ body.light .chat-msg.bot {
     border-bottom-left-radius: 4px;
 }
 
+.chat-msg strong {
+    color: var(--gold);
+}
+
+.chat-msg a {
+    color: var(--gold);
+    text-decoration: underline;
+}
+
+.chat-msg.user a {
+    color: white;
+}
+
+.chat-msg ul {
+    margin: 4px 0;
+    padding-left: 18px;
+}
+
 .chat-typing {
     align-self: flex-start;
     display: flex;
