@@ -15,7 +15,17 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/particles.css">
-    <link rel="stylesheet" href="css/hero-video.css">
+    <link rel="stylesheet" href="css/scene3d.css">
+
+    <!-- Three.js (no bundler on this site, so load it as native ES modules via CDN) -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+        }
+    }
+    </script>
 
     <link rel="shortcut icon" href="images/a prince watermark.png" type="image/x-icon">
 
@@ -290,10 +300,10 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 
-<!-- PERSISTENT AVATAR VIDEO: full-bleed in the hero, docks into a small
-     pinned panel with a different "camera angle" + caption per section -->
-<div id="avatar-video-wrap" class="avatar-video-wrap">
-    <video id="avatar-video" class="avatar-video" src="images/avatar/prince-avatar-loop.mp4" poster="images/avatar/prince-avatar-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+<!-- PERSISTENT 3D SCENE: full-bleed rigged/animated character + desk, with
+     a different camera framing + caption per section as you scroll -->
+<div id="scene3d-wrap" class="scene3d-wrap">
+    <canvas id="scene3d-canvas" aria-hidden="true"></canvas>
     <div id="avatar-overlay" class="avatar-overlay"></div>
 </div>
 <div id="avatar-caption" class="avatar-caption"></div>
@@ -359,7 +369,7 @@
 <script src="js/particles.js"></script>
 <script src="js/github.js"></script>
 <script src="js/main.js"></script>
-<script src="js/avatar-camera.js"></script>
+<script type="module" src="js/scene3d.js"></script>
 <script src="js/chatbot.js"></script>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();

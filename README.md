@@ -6,6 +6,11 @@ contact form, both served via Netlify Functions.
 ## Stack
 
 - Static HTML/CSS/JS (no build step for the frontend)
+- [Three.js](https://threejs.org) (loaded as native ES modules via the
+  `unpkg` CDN, see the import map in `index.html`) for the persistent 3D
+  scene behind the page — `js/scene3d.js` loads `images/avatar/typing.fbx`
+  (a rigged, animated character) and `images/avatar/desk-chair.obj` (a
+  static prop), and moves the camera to a different framing per section
 - Netlify Functions (Node, `netlify/functions/`) for anything that needs a
   secret API key
 - [Qwen Plus](https://www.alibabacloud.com/help/en/model-studio/) (DashScope
