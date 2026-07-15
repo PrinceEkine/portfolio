@@ -2,13 +2,14 @@ import * as THREE from "three";
 import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
 import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
 
-// Palette pulled from images/a prince watermark.png (the site's favicon):
-// cream highlight, dusty rose-tan, sage-teal rim, warm charcoal shadow.
+// Same purple/gold brand palette used everywhere else on the site
+// (--purple / --gold in css/style.css), not the muted favicon tones --
+// those read as flat gray and nearly disappeared against the dark overlay.
 const PALETTE = {
-    cream: 0xf9f3d6,
-    roseTan: 0xbca18e,
-    sage: 0xb1c7be,
-    charcoal: 0x3a332f,
+    purple: 0xa855f7,
+    gold: 0xfacc15,
+    purpleDark: 0x2e1065,
+    charcoal: 0x1a1a1f,
 };
 
 const canvas = document.getElementById("scene3d-canvas");
@@ -32,27 +33,29 @@ if (canvas) {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-    // Lights: warm cream key on the camera-facing (-Z) side where the
-    // character is actually visible from, sage-teal rim from behind (+Z)
-    // for an edge glow, soft warm fill near the desk.
-    scene.add(new THREE.AmbientLight(PALETTE.charcoal, 1.0));
+    // Lights: bright gold key on the camera-facing (-Z) side where the
+    // character is actually visible from, purple rim from behind (+Z) for
+    // an edge glow, soft purple fill near the desk.
+    scene.add(new THREE.AmbientLight(PALETTE.purpleDark, 1.4));
 
-    const keyLight = new THREE.DirectionalLight(PALETTE.cream, 3.0);
+    const keyLight = new THREE.DirectionalLight(PALETTE.gold, 3.2);
     keyLight.position.set(-2, 3.2, -2.8);
     scene.add(keyLight);
 
-    const rimLight = new THREE.DirectionalLight(PALETTE.sage, 1.0);
+    const rimLight = new THREE.DirectionalLight(PALETTE.purple, 2.2);
     rimLight.position.set(2, 2.2, 2.5);
     scene.add(rimLight);
 
-    const fillLight = new THREE.PointLight(PALETTE.roseTan, 0.9, 10);
+    const fillLight = new THREE.PointLight(PALETTE.purple, 1.4, 10);
     fillLight.position.set(-0.5, 1.3, -1.6);
     scene.add(fillLight);
 
-    // Untextured meshes get a vertical gradient tint (cream at the top,
-    // fading to charcoal at the base) using the favicon's palette, since
-    // there are no color textures baked into either asset.
-    function applyGradientMaterial(object, topColor, bottomColor) {
+    // Untextured meshes get a vertical gradient tint in the site's actual
+    // purple/gold brand colors (matching skill bars, buttons, section
+    // titles), plus a matching emissive glow so the model stays clearly
+    // visible against the dark overlay instead of relying purely on
+    // reflected light.
+    function applyGradientMaterial(object, topColor, bottomColor, emissiveIntensity) {
         object.traverse((child) => {
             if (!child.isMesh) return;
             const geom = child.geometry;
@@ -74,8 +77,10 @@ if (canvas) {
             geom.setAttribute("color", new THREE.BufferAttribute(colors, 3));
             child.material = new THREE.MeshStandardMaterial({
                 vertexColors: true,
-                metalness: 0.25,
-                roughness: 0.65,
+                metalness: 0.35,
+                roughness: 0.55,
+                emissive: new THREE.Color(bottomColor).lerp(new THREE.Color(topColor), 0.5),
+                emissiveIntensity,
             });
             child.castShadow = false;
             child.receiveShadow = false;
@@ -87,14 +92,14 @@ if (canvas) {
 
     const objLoader = new OBJLoader();
     objLoader.load("images/avatar/desk-chair.obj", (desk) => {
-        applyGradientMaterial(desk, PALETTE.roseTan, PALETTE.charcoal);
+        applyGradientMaterial(desk, PALETTE.purple, PALETTE.purpleDark, 0.3);
         desk.position.set(0, 0, 0);
         scene.add(desk);
     });
 
     const fbxLoader = new FBXLoader();
     fbxLoader.load("images/avatar/typing.fbx", (character) => {
-        applyGradientMaterial(character, PALETTE.cream, PALETTE.roseTan);
+        applyGradientMaterial(character, PALETTE.gold, PALETTE.purple, 0.55);
         // Seated in the chair, facing the desk/laptop (+Z side).
         character.position.set(0, 0, 0.55);
         character.rotation.y = Math.PI;
