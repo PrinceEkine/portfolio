@@ -22,36 +22,32 @@
     display: block;
 }
 
+/* A single gradient layer, not two stacked ones -- two overlapping
+   semi-transparent layers compound multiplicatively (e.g. 0.6 + 0.85
+   nearly opaque black), which is why the model was nearly invisible
+   outside the hero. One layer keeps the actual darkening amount visible
+   and predictable in these numbers. */
 .avatar-overlay {
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(ellipse at center, rgba(13, 13, 15, 0.45) 0%, rgba(13, 13, 15, 0.86) 78%),
-        linear-gradient(180deg, rgba(13, 13, 15, 0.72) 0%, rgba(13, 13, 15, 0.65) 45%, rgba(13, 13, 15, 0.92) 100%);
+    background: radial-gradient(ellipse at center, rgba(13, 13, 15, 0.12) 0%, rgba(13, 13, 15, 0.48) 100%);
     transition: background 0.9s ease;
 }
 
 /* Light mode's 3D scene background is itself bright now (not just a
    dark scene with a lighter tint), and body text stays light-colored in
-   both themes -- so this needs to darken about as much as dark mode's
-   overlay does, just with a slightly warmer/purple tint instead of pure
-   black, to keep light-colored text legible against a bright backdrop. */
+   both themes -- so this needs to darken enough to keep light text
+   legible, with a warm purple tint instead of pure black. */
 body.light .avatar-overlay {
-    background:
-        radial-gradient(ellipse at center, rgba(30, 16, 60, 0.45) 0%, rgba(20, 10, 40, 0.85) 78%),
-        linear-gradient(180deg, rgba(25, 12, 50, 0.7) 0%, rgba(25, 12, 50, 0.62) 45%, rgba(20, 10, 40, 0.9) 100%);
+    background: radial-gradient(ellipse at center, rgba(25, 12, 50, 0.18) 0%, rgba(20, 10, 40, 0.55) 100%);
 }
 
 .avatar-overlay.dimmed {
-    background:
-        radial-gradient(ellipse at center, rgba(13, 13, 15, 0.6) 0%, rgba(13, 13, 15, 0.93) 78%),
-        linear-gradient(180deg, rgba(13, 13, 15, 0.85) 0%, rgba(13, 13, 15, 0.8) 45%, rgba(13, 13, 15, 0.96) 100%);
+    background: radial-gradient(ellipse at center, rgba(13, 13, 15, 0.3) 0%, rgba(13, 13, 15, 0.65) 100%);
 }
 
 body.light .avatar-overlay.dimmed {
-    background:
-        radial-gradient(ellipse at center, rgba(30, 16, 60, 0.62) 0%, rgba(20, 10, 40, 0.92) 78%),
-        linear-gradient(180deg, rgba(25, 12, 50, 0.85) 0%, rgba(25, 12, 50, 0.8) 45%, rgba(20, 10, 40, 0.95) 100%);
+    background: radial-gradient(ellipse at center, rgba(25, 12, 50, 0.38) 0%, rgba(20, 10, 40, 0.7) 100%);
 }
 
 .avatar-caption {
