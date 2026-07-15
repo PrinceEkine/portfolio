@@ -12,10 +12,71 @@ let isSending = false;
 const WELCOME_MESSAGE =
     "Hi! I'm Prince's portfolio assistant. Ask me about his skills, experience, or projects — or leave your email if you'd like him to reach out.";
 
+const ALLOWED_LINK_SCHEMES = ["http:", "https:", "mailto:"];
+
+function escapeHtml(str) {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function isSafeUrl(url) {
+    try {
+        return ALLOWED_LINK_SCHEMES.includes(new URL(url, window.location.href).protocol);
+    } catch {
+        return false;
+    }
+}
+
+// Minimal, safe markdown -> HTML for bot replies: bold, links, and bullet
+// lists. Everything is HTML-escaped first, so only the tags we insert
+// ourselves can ever appear in the output.
+function renderMarkdown(text) {
+    const lines = escapeHtml(text).split("\n");
+    let html = "";
+    let inList = false;
+
+    for (const rawLine of lines) {
+        const line = rawLine.trim();
+        const isBullet = /^[-*]\s+/.test(line);
+
+        if (isBullet && !inList) {
+            html += "<ul>";
+            inList = true;
+        } else if (!isBullet && inList) {
+            html += "</ul>";
+            inList = false;
+        }
+
+        if (!isBullet && line === "") continue;
+
+        let content = isBullet ? line.replace(/^[-*]\s+/, "") : line;
+
+        content = content.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+        content = content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, url) =>
+            isSafeUrl(url)
+                ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`
+                : label
+        );
+
+        html += isBullet ? `<li>${content}</li>` : `${content}<br>`;
+    }
+    if (inList) html += "</ul>";
+
+    return html.replace(/<br>$/, "");
+}
+
 function appendMessage(role, text) {
     const bubble = document.createElement("div");
     bubble.className = `chat-msg ${role}`;
-    bubble.textContent = text;
+    if (role === "bot") {
+        bubble.innerHTML = renderMarkdown(text);
+    } else {
+        bubble.textContent = text;
+    }
     chatbotMessages.appendChild(bubble);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     return bubble;
