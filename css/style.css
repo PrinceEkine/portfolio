@@ -411,6 +411,10 @@ body.light {
     overflow: hidden;
 }
 
+body.light .skill-bar {
+    background: rgba(0, 0, 0, 0.08);
+}
+
 .skill-fill {
     height: 100%;
     width: 0%;
@@ -431,6 +435,11 @@ body.light {
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.1);
     transition: var(--transition);
+}
+
+body.light .project-card {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .project-image {
@@ -522,10 +531,16 @@ body.light {
 .contact-form textarea {
     padding: 12px;
     border-radius: 6px;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     outline: none;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     color: inherit;
+}
+
+body.light .contact-form input,
+body.light .contact-form textarea {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .contact-form button {
