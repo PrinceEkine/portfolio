@@ -50,14 +50,36 @@ if (canvas) {
     fillLight.position.set(-0.5, 1.3, -1.6);
     scene.add(fillLight);
 
+    // A 4-step gradient map with hard (nearest-filtered) steps is what
+    // turns smooth PBR shading into a banded cartoon/cel-shaded look.
+    const toonSteps = 4;
+    const toonData = new Uint8Array(toonSteps);
+    for (let i = 0; i < toonSteps; i++) {
+        toonData[i] = Math.floor((i / (toonSteps - 1)) * 255);
+    }
+    const toonGradientMap = new THREE.DataTexture(toonData, toonSteps, 1, THREE.RedFormat);
+    toonGradientMap.needsUpdate = true;
+    toonGradientMap.magFilter = THREE.NearestFilter;
+    toonGradientMap.minFilter = THREE.NearestFilter;
+
     // Untextured meshes get a vertical gradient tint in the site's actual
     // purple/gold brand colors (matching skill bars, buttons, section
-    // titles), plus a matching emissive glow so the model stays clearly
-    // visible against the dark overlay instead of relying purely on
-    // reflected light.
+    // titles), cel-shaded via MeshToonMaterial, plus a matching emissive
+    // glow so the model stays clearly visible against the dark overlay
+    // instead of relying purely on reflected light. A slightly-scaled,
+    // back-face black shell behind each mesh gives the classic cartoon
+    // outline.
     function applyGradientMaterial(object, topColor, bottomColor, emissiveIntensity) {
+        // Snapshot the mesh list before mutating anything -- adding the
+        // outline as a child *during* traverse() would make traverse()
+        // walk into it too (live children array), recursively spawning
+        // outlines-of-outlines forever.
+        const meshes = [];
         object.traverse((child) => {
-            if (!child.isMesh) return;
+            if (child.isMesh) meshes.push(child);
+        });
+
+        meshes.forEach((child) => {
             const geom = child.geometry;
             geom.computeBoundingBox();
             const { min, max } = geom.boundingBox;
@@ -75,15 +97,25 @@ if (canvas) {
                 colors[i * 3 + 2] = tmp.b;
             }
             geom.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-            child.material = new THREE.MeshStandardMaterial({
+            child.material = new THREE.MeshToonMaterial({
                 vertexColors: true,
-                metalness: 0.35,
-                roughness: 0.55,
+                gradientMap: toonGradientMap,
                 emissive: new THREE.Color(bottomColor).lerp(new THREE.Color(topColor), 0.5),
                 emissiveIntensity,
             });
             child.castShadow = false;
             child.receiveShadow = false;
+
+            const outlineMaterial = new THREE.MeshBasicMaterial({
+                color: 0x0a0a12,
+                side: THREE.BackSide,
+            });
+            const outline = child.isSkinnedMesh
+                ? new THREE.SkinnedMesh(geom, outlineMaterial)
+                : new THREE.Mesh(geom, outlineMaterial);
+            if (child.isSkinnedMesh) outline.bind(child.skeleton, child.bindMatrix);
+            outline.scale.multiplyScalar(1.035);
+            child.add(outline);
         });
     }
 
