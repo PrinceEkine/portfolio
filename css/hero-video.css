@@ -1,0 +1,54 @@
+/* ------------------------------
+   HERO BACKGROUND VIDEO
+--------------------------------*/
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    z-index: 0;
+    transform-origin: center center;
+    animation: heroCamPan 24s ease-in-out infinite alternate;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        radial-gradient(ellipse at center, rgba(13, 13, 15, 0.35) 0%, rgba(13, 13, 15, 0.8) 78%),
+        linear-gradient(180deg, rgba(13, 13, 15, 0.65) 0%, rgba(13, 13, 15, 0.55) 45%, rgba(13, 13, 15, 0.9) 100%);
+}
+
+body.light .hero-bg-overlay {
+    background:
+        radial-gradient(ellipse at center, rgba(245, 245, 247, 0.4) 0%, rgba(245, 245, 247, 0.85) 78%),
+        linear-gradient(180deg, rgba(245, 245, 247, 0.65) 0%, rgba(245, 245, 247, 0.6) 45%, rgba(245, 245, 247, 0.92) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Slow "camera" pan + zoom across the looping clip, since it's a single
+   fixed shot — simulates a subtle dolly/pan instead of a static crop. */
+@keyframes heroCamPan {
+    0%   { transform: scale(1.15) translate(3%, -2%); }
+    50%  { transform: scale(1.25) translate(-3%, 1%); }
+    100% { transform: scale(1.18) translate(1%, 3%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg-video {
+        animation: none;
+        transform: scale(1.15);
+    }
+}
