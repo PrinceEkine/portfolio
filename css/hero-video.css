@@ -37,8 +37,8 @@
 
 body.light .avatar-overlay {
     background:
-        radial-gradient(ellipse at center, rgba(245, 245, 247, 0.5) 0%, rgba(245, 245, 247, 0.9) 78%),
-        linear-gradient(180deg, rgba(245, 245, 247, 0.75) 0%, rgba(245, 245, 247, 0.7) 45%, rgba(245, 245, 247, 0.94) 100%);
+        radial-gradient(ellipse at center, rgba(20, 18, 24, 0.15) 0%, rgba(20, 18, 24, 0.55) 78%),
+        linear-gradient(180deg, rgba(20, 18, 24, 0.35) 0%, rgba(20, 18, 24, 0.3) 45%, rgba(20, 18, 24, 0.6) 100%);
 }
 
 /* Hero gets a slightly lighter scrim so the establishing shot reads
@@ -51,8 +51,8 @@ body.light .avatar-overlay {
 
 body.light .avatar-overlay.dimmed {
     background:
-        radial-gradient(ellipse at center, rgba(245, 245, 247, 0.7) 0%, rgba(245, 245, 247, 0.95) 78%),
-        linear-gradient(180deg, rgba(245, 245, 247, 0.88) 0%, rgba(245, 245, 247, 0.85) 45%, rgba(245, 245, 247, 0.97) 100%);
+        radial-gradient(ellipse at center, rgba(20, 18, 24, 0.35) 0%, rgba(20, 18, 24, 0.72) 78%),
+        linear-gradient(180deg, rgba(20, 18, 24, 0.55) 0%, rgba(20, 18, 24, 0.5) 45%, rgba(20, 18, 24, 0.75) 100%);
 }
 
 .avatar-caption {
