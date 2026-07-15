@@ -127,39 +127,71 @@ const observer = new IntersectionObserver(entries => {
 
 fadeSections.forEach(section => observer.observe(section));
 
+// Staggered scroll reveal for cards/timeline/skills. Groups items by their
+// parent container so each group's stagger sequence starts fresh.
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
 
-(function () {
-    emailjs.init("nHUgtyaDb7Xp6h7kC"); // public key
-})();
+function observeReveal(el, index) {
+    el.classList.add("reveal-item");
+    el.style.setProperty("--stagger-index", index % 6);
+    revealObserver.observe(el);
+}
+window.observeReveal = observeReveal;
 
-document.getElementById("contact-form").addEventListener("submit", function (e) {
+function setupReveal(itemSelector, groupSelector) {
+    document.querySelectorAll(groupSelector).forEach(group => {
+        group.querySelectorAll(itemSelector).forEach((el, index) => observeReveal(el, index));
+    });
+}
+
+setupReveal(".project-card", ".projects-grid");
+setupReveal(".timeline-item", ".timeline");
+setupReveal(".skill", ".skills-container");
+
+
+document.getElementById("contact-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const formStatus = document.getElementById("form-status");
     const submitBtn = this.querySelector("button");
+    const formData = new FormData(this);
 
     // Show loading state
     submitBtn.textContent = "Sending...";
     submitBtn.disabled = true;
     formStatus.textContent = "";
 
-    emailjs.sendForm("service_l0iwzob", "template_29m0rsl", this)
-        .then(() => {
-            formStatus.textContent = "Message sent successfully! 🎉";
-            formStatus.style.color = "var(--gold)";
-            submitBtn.textContent = "Send Message";
-            submitBtn.disabled = false;
-
-            // Add success animation
-            formStatus.style.animation = "successPulse 0.6s ease";
-
-            this.reset();
-        })
-        .catch((error) => {
-            console.error("EmailJS error:", error);
-            formStatus.textContent = "Message failed. Please try again.";
-            formStatus.style.color = "#ff6b6b";
-            submitBtn.textContent = "Send Message";
-            submitBtn.disabled = false;
+    try {
+        const res = await fetch(`${API_BASE_URL}/.netlify/functions/contact`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: formData.get("name"),
+                email: formData.get("email"),
+                message: formData.get("message"),
+            }),
         });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Failed to send message.");
+
+        formStatus.textContent = "Message sent successfully! 🎉";
+        formStatus.style.color = "var(--gold)";
+        formStatus.style.animation = "successPulse 0.6s ease";
+        this.reset();
+    } catch (error) {
+        console.error("Contact form error:", error);
+        formStatus.textContent = error.message || "Message failed. Please try again.";
+        formStatus.style.color = "#ff6b6b";
+    } finally {
+        submitBtn.textContent = "Send Message";
+        submitBtn.disabled = false;
+    }
 });
