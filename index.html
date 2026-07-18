@@ -103,6 +103,11 @@
             <span id="typewriter"></span>
         </h2>
 
+        <span class="availability-badge">
+            <span class="status-dot"></span>
+            Available for work
+        </span>
+
         <p class="hero-text">
             I build scalable web applications, backend systems, and AI-powered tools using Java, HTML, React, Typescript, Python, and JavaScript.
         </p>
@@ -122,6 +127,29 @@
         I am Prince Dagogo Ekine, a Full-Stack Developer with experience building scalable applications,
         automation tools, and AI-driven platforms. I enjoy solving real-world problems with clean and efficient code.
     </p>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <i class="fa-solid fa-calendar-days stat-icon"></i>
+            <span class="stat-number" data-count="2" data-suffix="+">0</span>
+            <span class="stat-label">Years of Experience</span>
+        </div>
+        <div class="stat-card">
+            <i class="fa-solid fa-diagram-project stat-icon"></i>
+            <span class="stat-number" data-count="4" data-suffix="+">0</span>
+            <span class="stat-label">Major Projects</span>
+        </div>
+        <div class="stat-card">
+            <i class="fa-solid fa-code stat-icon"></i>
+            <span class="stat-number" data-count="10" data-suffix="+">0</span>
+            <span class="stat-label">Technologies</span>
+        </div>
+        <div class="stat-card">
+            <i class="fa-brands fa-github stat-icon"></i>
+            <span class="stat-number" id="stat-repos" data-count="0" data-suffix="+">0</span>
+            <span class="stat-label">GitHub Repositories</span>
+        </div>
+    </div>
 </section>
 
 <!-- EXPERIENCE -->
@@ -167,45 +195,55 @@
 <section id="skills" class="section fade-section">
     <h2 class="section-title">Skills</h2>
 
-    <div class="skills-container">
-        <div class="skill">
-            <span>Java</span>
-            <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+    <div class="skills-categories">
+        <div class="skills-category">
+            <h3 class="skills-category-title"><i class="fa-solid fa-display"></i> Frontend</h3>
+            <div class="skills-container">
+                <div class="skill">
+                    <span>HTML</span>
+                    <div class="skill-bar"><div class="skill-fill" data-level="95"></div></div>
+                </div>
+                <div class="skill">
+                    <span>CSS</span>
+                    <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+                </div>
+                <div class="skill">
+                    <span>JavaScript</span>
+                    <div class="skill-bar"><div class="skill-fill" data-level="80"></div></div>
+                </div>
+                <div class="skill">
+                    <span>TypeScript</span>
+                    <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
+                </div>
+                <div class="skill">
+                    <span>React</span>
+                    <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
+                </div>
+            </div>
         </div>
 
-        <div class="skill">
-            <span>Python</span>
-            <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+        <div class="skills-category">
+            <h3 class="skills-category-title"><i class="fa-solid fa-server"></i> Backend</h3>
+            <div class="skills-container">
+                <div class="skill">
+                    <span>Java</span>
+                    <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+                </div>
+                <div class="skill">
+                    <span>Python</span>
+                    <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+                </div>
+            </div>
         </div>
 
-        <div class="skill">
-            <span>JavaScript</span>
-            <div class="skill-bar"><div class="skill-fill" data-level="80"></div></div>
-        </div> 
-
-        <div class="skill">
-            <span>TypeScript</span>
-            <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
-        </div> 
-
-        <div class="skill">
-            <span>React</span>
-            <div class="skill-bar"><div class="skill-fill" data-level="70"></div></div>
-        </div>
-
-        <div class="skill">
-            <span>HTML</span>
-            <div class="skill-bar"><div class="skill-fill" data-level="95"></div></div>
-        </div>
-
-        <div class="skill">
-            <span>CSS</span>
-            <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
-        </div>
-
-        <div class="skill">
-            <span>GitHub</span>
-            <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+        <div class="skills-category">
+            <h3 class="skills-category-title"><i class="fa-solid fa-toolbox"></i> Tools</h3>
+            <div class="skills-container">
+                <div class="skill">
+                    <span>GitHub</span>
+                    <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -220,6 +258,7 @@
         <div class="project-card hover-zoom">
             <div class="project-image">
                 <img src="images/StockbitPro.png" alt="Stockbit-Pro Project Screenshot" loading="lazy">
+                <span class="project-status live">Live</span>
             </div>
             <h3>Stockbit-Pro</h3>
             <p>Advanced stock tracking web application built with React and APIs.</p>
@@ -238,6 +277,7 @@
         <div class="project-card hover-zoom">
             <div class="project-image">
                 <img src="images/Gazneft groups.png" alt="Gazneft-Groups Project Screenshot" loading="lazy">
+                <span class="project-status live">Live</span>
             </div>
             <h3>Gazneft-Groups</h3>
             <p>A powerful multi-account webmail system with AI-powered tools and efficient inbox management</p>
@@ -257,6 +297,7 @@
         <div class="project-card hover-zoom">
             <div class="project-image">
                 <img src="images/Bitnexus.png" alt="BitNexus Project Screenshot" loading="lazy">
+                <span class="project-status dev">In Development</span>
             </div>
             <h3>BitNexus</h3>
             <p>A premium Service Management Platform for professional home care on-demand, featuring customer booking, technician management, and operational dashboards.</p>
@@ -274,6 +315,7 @@
         <div class="project-card hover-zoom">
             <div class="project-image">
                 <img src="images/AutoBit Rescue.png" alt="AutoBit Rescue Project Screenshot" loading="lazy">
+                <span class="project-status dev">In Development</span>
             </div>
             <h3>AutoBit Rescue</h3>
             <p>A comprehensive car maintenance and emergency breakdown service platform featuring real-time service requests, an admin dispatch dashboard, and AI-powered assistance.</p>
@@ -293,6 +335,16 @@
 
     <h3 class="section-subtitle">More from GitHub</h3>
     <div id="github-projects" class="projects-grid"></div>
+
+    <div class="github-cta">
+        <i class="fa-brands fa-github github-cta-icon"></i>
+        <div class="github-cta-text">
+            <h3>Follow me on GitHub</h3>
+            <p>If you like my work and want to see what I'm building next, follow along on GitHub.</p>
+            <span id="github-followers" class="github-followers"></span>
+        </div>
+        <a href="https://github.com/PrinceEkine" target="_blank" class="btn-primary">Follow on GitHub</a>
+    </div>
 </section>
 
 <!-- BACK TO TOP BUTTON -->

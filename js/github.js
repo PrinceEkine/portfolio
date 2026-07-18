@@ -28,3 +28,26 @@ fetch("https://api.github.com/users/PrinceEkine/repos")
     .catch(() => {
         githubContainer.innerHTML = "<p>Unable to load GitHub projects.</p>";
     });
+
+const statReposEl = document.getElementById("stat-repos");
+const followersEl = document.getElementById("github-followers");
+
+fetch("https://api.github.com/users/PrinceEkine")
+    .then((res) => res.json())
+    .then((user) => {
+        if (statReposEl && typeof user.public_repos === "number") {
+            statReposEl.dataset.count = user.public_repos;
+            if (window.animateStatNumber) window.animateStatNumber(statReposEl);
+        }
+        if (followersEl && typeof user.followers === "number") {
+            followersEl.textContent = `${user.followers.toLocaleString()} followers`;
+        }
+    })
+    .catch(() => {
+        // Showing a wrong/zero count is worse than not showing the card.
+        if (statReposEl) {
+            const card = statReposEl.closest(".stat-card");
+            if (card) card.style.display = "none";
+        }
+        if (followersEl) followersEl.textContent = "";
+    });

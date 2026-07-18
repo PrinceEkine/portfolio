@@ -234,6 +234,34 @@ body.light {
     margin-bottom: 25px;
 }
 
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    margin-bottom: 18px;
+    border-radius: 20px;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    color: #22c55e;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
 .hero-buttons {
     display: flex;
     gap: 20px;
@@ -287,6 +315,55 @@ body.light {
     max-width: 700px;
     margin: auto;
     line-height: 1.7;
+}
+
+/* STATS ("Career in Numbers") */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 50px auto 0;
+}
+
+.stat-card {
+    padding: 25px 15px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--purple);
+    box-shadow: 0 10px 25px rgba(168, 85, 247, 0.2);
+}
+
+.stat-icon {
+    font-size: 1.6rem;
+    color: var(--purple);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--purple), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-label {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    opacity: 0.8;
 }
 
 /* TIMELINE */
@@ -395,6 +472,31 @@ body.light {
 }
 
 
+.skills-categories {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.skills-category {
+    margin-top: 40px;
+}
+
+.skills-category:first-child {
+    margin-top: 0;
+}
+
+.skills-category-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .skills-container {
     max-width: 700px;
     margin: 40px auto;
@@ -441,10 +543,35 @@ body.light {
 }
 
 .project-image {
+    position: relative;
     margin-bottom: 15px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.project-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    backdrop-filter: blur(4px);
+}
+
+.project-status.live {
+    background: rgba(34, 197, 94, 0.85);
+}
+
+.project-status.dev {
+    background: rgba(250, 204, 21, 0.9);
+    color: #1a1a1a;
 }
 
 .project-image img {
@@ -514,6 +641,57 @@ body.light {
 .btn-code:hover {
     background: var(--gold);
     color: black;
+}
+
+/* GITHUB FOLLOW CTA */
+.github-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    max-width: 700px;
+    margin: 50px auto 0;
+    padding: 30px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    text-align: left;
+}
+
+.github-cta-icon {
+    font-size: 3rem;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.github-cta-text {
+    flex: 1;
+    min-width: 200px;
+}
+
+.github-cta-text h3 {
+    color: var(--gold);
+    margin-bottom: 6px;
+}
+
+.github-cta-text p {
+    opacity: 0.85;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.github-followers {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--purple);
+    font-weight: 600;
+}
+
+.github-cta .btn-primary {
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 

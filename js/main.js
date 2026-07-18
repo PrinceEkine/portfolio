@@ -154,6 +154,39 @@ function setupReveal(itemSelector, groupSelector) {
 setupReveal(".project-card", ".projects-grid");
 setupReveal(".timeline-item", ".timeline");
 setupReveal(".skill", ".skills-container");
+setupReveal(".stat-card", ".stats-grid");
+
+// Count-up animation for the "Career in Numbers" stats. Exposed globally
+// so github.js can re-trigger it once the real repo count arrives, even
+// if that happens after the card already scrolled into view.
+function animateStatNumber(el) {
+    const target = parseInt(el.dataset.count, 10) || 0;
+    const suffix = el.dataset.suffix || "";
+    const duration = 1500;
+    const start = performance.now();
+
+    function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+window.animateStatNumber = animateStatNumber;
+
+const statObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                animateStatNumber(entry.target);
+                statObserver.unobserve(entry.target);
+            }
+        });
+    },
+    { threshold: 0.5 }
+);
+document.querySelectorAll(".stat-number").forEach((el) => statObserver.observe(el));
 
 
 document.getElementById("contact-form").addEventListener("submit", async function (e) {
