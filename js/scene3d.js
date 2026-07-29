@@ -1,30 +1,92 @@
-import * as THREE from "three";
-import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
-import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
-
-// Same purple/gold brand palette used everywhere else on the site
-// (--purple / --gold in css/style.css), not the muted favicon tones --
-// those read as flat gray and nearly disappeared against the dark overlay.
-const PALETTE = {
-    purple: 0xa855f7,
-    gold: 0xfacc15,
-    purpleDark: 0x2e1065,
-    charcoal: 0x1a1a1f,
-};
-
 const canvas = document.getElementById("scene3d-canvas");
 const overlay = document.getElementById("avatar-overlay");
 const caption = document.getElementById("avatar-caption");
+const sceneWrap = document.getElementById("scene3d-wrap");
 
-// Scene background/fog/lighting swap between a dark moody scene and a
-// bright one depending on the site's light/dark theme, not just a CSS
-// overlay tint over an always-dark scene.
-const THEME = {
-    dark: { bg: 0x0d0d0f, fogNear: 6, fogFar: 14, ambient: 0x2e1065, ambientIntensity: 1.4 },
-    light: { bg: 0xf3eefc, fogNear: 7, fogFar: 16, ambient: 0xd9c7f5, ambientIntensity: 2.2 },
+const captions = {
+    about: "Full-stack dev & problem solver",
+    experience: "2+ years building real products",
+    skills: "Java, Python, JS, React & more",
+    projects: "Check out what I've built",
+    contact: "Let's build something together",
 };
 
-if (canvas) {
+let currentSectionId = "hero";
+
+function setCaption(text) {
+    if (!caption) return;
+    if (!text) {
+        caption.classList.remove("show");
+        return;
+    }
+    caption.textContent = text;
+    caption.classList.add("show");
+}
+
+// Section-detection and the hero dim/caption UI are cheap DOM work, so they
+// run on every device. The heavy Three.js scene (20MB of model assets, a
+// couple hundred thousand triangles) is gated to non-mobile below --
+// downloading that much on a phone, on cellular data, isn't worth it, and
+// mobile GPUs render it far worse anyway.
+if ("IntersectionObserver" in window) {
+    const heroSection = document.getElementById("hero");
+    if (heroSection && overlay) {
+        new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    overlay.classList.toggle("dimmed", !entry.isIntersecting);
+                });
+            },
+            { threshold: 0.35 }
+        ).observe(heroSection);
+    }
+
+    const sectionObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                currentSectionId = entry.target.id;
+                setCaption(currentSectionId === "hero" ? null : captions[currentSectionId]);
+            });
+        },
+        { threshold: 0.5 }
+    );
+    document.querySelectorAll("section[id]").forEach((s) => sectionObserver.observe(s));
+}
+
+const IS_MOBILE = window.innerWidth <= 768;
+
+if (IS_MOBILE && sceneWrap) {
+    sceneWrap.classList.add("scene3d-static-fallback");
+}
+
+if (canvas && !IS_MOBILE) {
+    loadScene();
+}
+
+async function loadScene() {
+    const THREE = await import("three");
+    const { OBJLoader } = await import("three/addons/loaders/OBJLoader.js");
+    const { FBXLoader } = await import("three/addons/loaders/FBXLoader.js");
+
+    // Same purple/gold brand palette used everywhere else on the site
+    // (--purple / --gold in css/style.css), not the muted favicon tones --
+    // those read as flat gray and nearly disappeared against the dark overlay.
+    const PALETTE = {
+        purple: 0xa855f7,
+        gold: 0xfacc15,
+        purpleDark: 0x2e1065,
+        charcoal: 0x1a1a1f,
+    };
+
+    // Scene background/fog/lighting swap between a dark moody scene and a
+    // bright one depending on the site's light/dark theme, not just a CSS
+    // overlay tint over an always-dark scene.
+    const THEME = {
+        dark: { bg: 0x0d0d0f, fogNear: 6, fogFar: 14, ambient: 0x2e1065, ambientIntensity: 1.4 },
+        light: { bg: 0xf3eefc, fogNear: 7, fogFar: 16, ambient: 0xd9c7f5, ambientIntensity: 2.2 },
+    };
+
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(THEME.dark.bg);
     scene.fog = new THREE.Fog(THEME.dark.bg, THEME.dark.fogNear, THEME.dark.fogFar);
@@ -134,10 +196,10 @@ if (canvas) {
         }
     });
 
-    // Per-section camera framing + caption, mirroring the old video
-    // background's behavior but with a real moving 3D camera. All angles
-    // stay on the -Z/-X side, the only side the seated character is
-    // actually visible from (the tall chair back hides them otherwise).
+    // Per-section camera framing, mirroring the old video background's
+    // behavior but with a real moving 3D camera. All angles stay on the
+    // -Z/-X side, the only side the seated character is actually visible
+    // from (the tall chair back hides them otherwise).
     const angles = {
         hero: { pos: [-1.3, 1.6, -1.8], look: [0, 1.15, 0.4] },
         about: { pos: [-0.7, 1.55, -1.0], look: [0, 1.3, 0.3] },
@@ -146,60 +208,16 @@ if (canvas) {
         projects: { pos: [-2.2, 2.0, -2.6], look: [0, 1.15, 0.3] },
         contact: { pos: [-1.6, 1.7, -2.2], look: [0, 1.15, 0.35] },
     };
-    const captions = {
-        about: "Full-stack dev & problem solver",
-        experience: "2+ years building real products",
-        skills: "Java, Python, JS, React & more",
-        projects: "Check out what I've built",
-        contact: "Let's build something together",
-    };
 
-    let target = angles.hero;
     const currentPos = new THREE.Vector3(...angles.hero.pos);
     const currentLook = new THREE.Vector3(...angles.hero.look);
-
-    function setCaption(text) {
-        if (!caption) return;
-        if (!text) {
-            caption.classList.remove("show");
-            return;
-        }
-        caption.textContent = text;
-        caption.classList.add("show");
-    }
-
-    if ("IntersectionObserver" in window) {
-        const heroSection = document.getElementById("hero");
-        if (heroSection && overlay) {
-            new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        overlay.classList.toggle("dimmed", !entry.isIntersecting);
-                    });
-                },
-                { threshold: 0.35 }
-            ).observe(heroSection);
-        }
-
-        const sectionObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (!entry.isIntersecting) return;
-                    const id = entry.target.id;
-                    target = angles[id] || angles.hero;
-                    setCaption(id === "hero" ? null : captions[id]);
-                });
-            },
-            { threshold: 0.5 }
-        );
-        document.querySelectorAll("section[id]").forEach((s) => sectionObserver.observe(s));
-    }
 
     function animate() {
         requestAnimationFrame(animate);
         const delta = clock.getDelta();
         if (mixer) mixer.update(delta);
 
+        const target = angles[currentSectionId] || angles.hero;
         currentPos.lerp(new THREE.Vector3(...target.pos), 0.03);
         currentLook.lerp(new THREE.Vector3(...target.look), 0.03);
         camera.position.copy(currentPos);

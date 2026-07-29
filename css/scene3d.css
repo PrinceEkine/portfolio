@@ -22,6 +22,17 @@
     display: block;
 }
 
+/* Mobile skips the Three.js scene entirely (20MB of model assets isn't
+   worth downloading on a phone/cellular connection, and the GPUs render it
+   worse anyway) and falls back to this CSS-only gradient instead. */
+.scene3d-wrap.scene3d-static-fallback {
+    background: radial-gradient(ellipse at 50% 30%, rgba(168, 85, 247, 0.3) 0%, rgba(13, 13, 15, 1) 70%);
+}
+
+body.light .scene3d-wrap.scene3d-static-fallback {
+    background: radial-gradient(ellipse at 50% 30%, rgba(168, 85, 247, 0.22) 0%, rgba(243, 238, 252, 1) 70%);
+}
+
 /* A single gradient layer, not two stacked ones -- two overlapping
    semi-transparent layers compound multiplicatively (e.g. 0.6 + 0.85
    nearly opaque black), which is why the model was nearly invisible

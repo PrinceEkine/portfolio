@@ -17,12 +17,14 @@
     <link rel="stylesheet" href="css/particles.css">
     <link rel="stylesheet" href="css/scene3d.css">
 
-    <!-- Three.js (no bundler on this site, so load it as native ES modules via CDN) -->
+    <!-- Three.js, self-hosted (js/vendor/three) instead of a CDN -- an
+         external CDN being slow, blocked, or down for a visitor's network
+         would otherwise silently break the whole 3D scene. -->
     <script type="importmap">
     {
         "imports": {
-            "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+            "three": "./js/vendor/three/build/three.module.js",
+            "three/addons/": "./js/vendor/three/examples/jsm/"
         }
     }
     </script>
