@@ -1,6 +1,7 @@
 
 const roles = [
     "Full-Stack Developer",
+    "Mobile App Developer",
     "AI Engineer",
     "Backend Specialist",
     "Problem Solver"
@@ -18,7 +19,7 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             loadingScreen.style.display = 'none';
         }, 500);
-    }, 2000);
+    }, 800);
 });
 
 // Scroll progress functionality
@@ -51,8 +52,9 @@ const hamburger = document.getElementById('hamburger');
 const navLinks = document.querySelector('.nav-links');
 
 hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('active');
+    const open = navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', open);
 });
 
 // Close mobile menu when clicking a link
@@ -104,14 +106,16 @@ function animateSkills() {
     });
 }
 
-window.addEventListener("scroll", () => {
-    const skillsSection = document.getElementById("skills");
-    const rect = skillsSection.getBoundingClientRect();
-
-    if (rect.top < window.innerHeight - 100) {
+// Fill the bars once the section is visible, including when a visitor
+// lands directly on #skills without scrolling.
+const skillsObserver = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
         animateSkills();
+        skillsObserver.disconnect();
     }
-});
+}, { threshold: 0.2 });
+
+skillsObserver.observe(document.getElementById("skills"));
 
 
 
@@ -155,6 +159,23 @@ setupReveal(".project-card", ".projects-grid");
 setupReveal(".timeline-item", ".timeline");
 setupReveal(".skill", ".skills-container");
 setupReveal(".stat-card", ".stats-grid");
+setupReveal(".service-card", ".services");
+
+// Project filters
+const filterButtons = document.querySelectorAll(".filter-btn");
+const projectCards = document.querySelectorAll("#local-projects .project-card");
+
+filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filter = btn.dataset.filter;
+        projectCards.forEach(card => {
+            card.hidden = filter !== "all" && card.dataset.category !== filter;
+        });
+    });
+});
 
 // Count-up animation for the "Career in Numbers" stats. Exposed globally
 // so github.js can re-trigger it once the real repo count arrives, even

@@ -1,23 +1,39 @@
 const githubContainer = document.getElementById("github-projects");
 
-fetch("https://api.github.com/users/PrinceEkine/repos")
-    .then(res => res.json())
+// Repos already shown as featured cards, plus this site itself
+const featuredRepos = [
+    "portfolio", "stockbit-pro", "gazneftgroup", "bitnexus2", "autobit-rescue",
+    "dago", "innovaro-website-main"
+];
+
+function escapeHTML(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+fetch("https://api.github.com/users/PrinceEkine/repos?sort=pushed&per_page=100")
+    .then(res => {
+        if (!res.ok) throw new Error("GitHub API " + res.status);
+        return res.json();
+    })
     .then(data => {
-        const topRepos = data
-            .filter(repo => !repo.fork)
-            .sort((a, b) => b.stargazers_count - a.stargazers_count)
+        const recentRepos = data
+            .filter(repo => !repo.fork && !featuredRepos.includes(repo.name.toLowerCase()))
             .slice(0, 6);
 
-        topRepos.forEach((repo, index) => {
+        recentRepos.forEach((repo, index) => {
             const card = document.createElement("div");
             card.className = "project-card hover-zoom";
 
+            const updated = new Date(repo.pushed_at).toLocaleDateString(undefined, { month: "short", year: "numeric" });
+
             card.innerHTML = `
-                <h3>${repo.name}</h3>
-                <p>${repo.description || "No description available."}</p>
-                <p><strong>⭐ ${repo.stargazers_count}</strong> • ${repo.language || "Unknown"}</p>
+                <h3>${escapeHTML(repo.name)}</h3>
+                <p>${escapeHTML(repo.description || "No description available.")}</p>
+                <p><strong>⭐ ${repo.stargazers_count}</strong> • ${escapeHTML(repo.language || "Code")} • Updated ${updated}</p>
                 <div class="project-links">
-                    <a href="${repo.html_url}" target="_blank">Code</a>
+                    <a href="${escapeHTML(repo.html_url)}" class="btn-code" target="_blank" rel="noopener">Code</a>
                 </div>
             `;
 
@@ -26,7 +42,7 @@ fetch("https://api.github.com/users/PrinceEkine/repos")
         });
     })
     .catch(() => {
-        githubContainer.innerHTML = "<p>Unable to load GitHub projects.</p>";
+        githubContainer.innerHTML = '<p>Unable to load GitHub projects. <a href="https://github.com/PrinceEkine" target="_blank" rel="noopener">See them on GitHub</a>.</p>';
     });
 
 const statReposEl = document.getElementById("stat-repos");

@@ -741,7 +741,6 @@ body.light {
     padding: 30px;
     text-align: center;
     opacity: 0.7;
-    color: rgb(255,0,0);
 }
 
 /* ------------------------------
@@ -1190,5 +1189,230 @@ body.light .chatbot-input-row input {
         left: 10px;
         width: auto;
         bottom: 145px;
+    }
+}
+
+
+/* ------------------------------
+   ACCESSIBILITY HELPERS
+--------------------------------*/
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+/* ------------------------------
+   HERO SOCIALS
+--------------------------------*/
+.hero-socials {
+    display: flex;
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.hero-socials a {
+    color: var(--gold);
+    font-size: 22px;
+    transition: var(--transition);
+}
+
+.hero-socials a:hover {
+    color: var(--purple);
+    transform: translateY(-2px);
+}
+
+/* ------------------------------
+   ABOUT: SERVICES
+--------------------------------*/
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 30px auto 0;
+}
+
+.service-card {
+    padding: 25px;
+    text-align: left;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--purple);
+    box-shadow: 0 10px 25px rgba(168, 85, 247, 0.2);
+}
+
+.service-card i {
+    font-size: 1.6rem;
+    color: var(--purple);
+}
+
+.service-card h3 {
+    margin: 12px 0 8px;
+    color: var(--gold);
+    font-size: 1.05rem;
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+
+/* ------------------------------
+   SKILLS: TOOL CLOUD
+--------------------------------*/
+.tool-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.tool-cloud span {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(168, 85, 247, 0.5);
+    background: var(--glass);
+    font-size: 0.85rem;
+}
+
+/* ------------------------------
+   PROJECTS: FILTERS, STATUSES, PLACEHOLDERS
+--------------------------------*/
+.project-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.filter-btn {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(250, 204, 21, 0.5);
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: black;
+}
+
+#local-projects .project-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#local-projects .project-card[hidden] {
+    display: none;
+}
+
+#local-projects .project-card p {
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+#local-projects .project-links {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.project-image img {
+    display: block;
+    object-position: top;
+}
+
+.project-image--placeholder {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(250, 204, 21, 0.25));
+}
+
+.project-image--placeholder i {
+    font-size: 64px;
+    color: var(--gold);
+    filter: drop-shadow(0 0 12px var(--purple));
+}
+
+.project-status.new {
+    background: rgba(168, 85, 247, 0.9);
+}
+
+.project-status.client {
+    background: rgba(15, 15, 20, 0.75);
+    border: 1px solid rgba(250, 204, 21, 0.6);
+    color: var(--gold);
+}
+
+.contact-intro {
+    margin-bottom: 30px;
+}
+
+/* ------------------------------
+   LIGHT MODE (new elements)
+--------------------------------*/
+body.light .service-card {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light .service-card h3 {
+    color: #a16207;
+}
+
+body.light .tool-cloud span {
+    background: #ffffff;
+}
+
+/* ------------------------------
+   REDUCED MOTION
+--------------------------------*/
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-socials {
+        justify-content: center;
     }
 }
